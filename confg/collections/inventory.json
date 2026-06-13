@@ -1,0 +1,22 @@
+[
+    {
+        "branch": "manizales",
+        "products": [
+            {
+                "product_id": 1,
+                "product_name": "hammer",
+                "quantity": 100
+            }
+        ]
+    },
+    {
+        "branch": "pereira",
+        "products": [
+            {
+                "product_id": 1,
+                "product_name": "hammer",
+                "quantity": 900
+            }
+        ]
+    }
+]
