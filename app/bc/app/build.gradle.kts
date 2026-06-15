@@ -18,18 +18,17 @@ repositories {
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
-
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
     // This dependency is used by the application.
     implementation(libs.guava)
-
     implementation("io.javalin:javalin:7.2.2")
     // Javalin Loger
     implementation("org.slf4j:slf4j-simple:2.0.17")
-
     implementation(platform("org.mongodb:mongodb-driver-bom:5.7.0"))
     implementation("org.mongodb:mongodb-driver-sync")
+    // Source: https://mvnrepository.com/artifact/org.json/json
+    implementation("org.json:json:20260522")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.21.2")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
