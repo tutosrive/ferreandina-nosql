@@ -4,8 +4,89 @@
         "name": "hammer",
         "description": "Tools used for striking, driving nails, breaking materials and performing carpentry, construction and repair tasks",
         "price": 100,
-        "category": "hand-tools",
+        "category": 11,
         "quantity": 1000,
-        "weight": 2.1
+        "weight": 2.5
+    },
+    {
+        "__id": 2,
+        "name": "power_drill",
+        "description": "18V cordless power drill with variable speed for construction and repair work",
+        "price": 150,
+        "category": 10,
+        "quantity": 150,
+        "weight": 1.8
+    },
+    {
+        "__id": 3,
+        "name": "portland_cement",
+        "description": "50kg bag of general purpose portland cement for basic construction and renovation projects",
+        "price": 15,
+        "category": 1,
+        "quantity": 500,
+        "weight": 50.0
+    },
+    {
+        "__id": 4,
+        "name": "pvc_pipe_half_inch",
+        "description": "Standard 1/2 inch PVC pipe for water supply and drainage systems",
+        "price": 5,
+        "category": 2,
+        "quantity": 300,
+        "weight": 0.5
+    },
+    {
+        "__id": 5,
+        "name": "security_padlock",
+        "description": "Heavy-duty brass security padlock for doors and access points",
+        "price": 12,
+        "category": 3,
+        "quantity": 200,
+        "weight": 0.4
+    },
+    {
+        "__id": 6,
+        "name": "copper_wire_12awg",
+        "description": "12 AWG THHN copper wire roll for electrical installations",
+        "price": 80,
+        "category": 5,
+        "quantity": 100,
+        "weight": 3.2
+    },
+    {
+        "__id": 7,
+        "name": "safety_glasses",
+        "description": "Clear anti-scratch safety glasses for protective equipment in construction",
+        "price": 8,
+        "category": 12,
+        "quantity": 250,
+        "weight": 0.1
+    },
+    {
+        "__id": 8,
+        "name": "white_interior_paint",
+        "description": "Premium white acrylic interior paint gallon for surface finishing",
+        "price": 30,
+        "category": 16,
+        "quantity": 120,
+        "weight": 4.5
+    },
+    {
+        "__id": 9,
+        "name": "silicone_sealant",
+        "description": "Clear multipurpose silicone sealant tube for joining and sealing materials",
+        "price": 6,
+        "category": 15,
+        "quantity": 400,
+        "weight": 0.3
+    },
+    {
+        "__id": 10,
+        "name": "drywall_screws",
+        "description": "Box of 1000 drywall screws (1-1/4 inch) for assembly and securing parts",
+        "price": 10,
+        "category": 18,
+        "quantity": 600,
+        "weight": 1.5
     }
 ]
