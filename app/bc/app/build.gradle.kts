@@ -49,12 +49,10 @@ tasks.named<Test>("test") {
 }
 
 
-tasks.register("watch") {
-    inputs.files(fileTree("./src/main/java") {
-        include "**/*.java"
-    })
-
-    doLast {
-        println("Archivos Java cambiaron")
-    }
+tasks.named("run") {
+    inputs.files(
+        fileTree("src/main/java") {
+            include("**/*.java")
+        }
+    )
 }
