@@ -1,10 +1,10 @@
 [
   {
-    "__id": 1,
+    "_id": 1,
     "name": "hammer",
     "description": "Tools used for striking, driving nails, breaking materials and performing carpentry, construction and repair tasks",
     "price": 100,
-    "category": 11,
+    "category_id": 11,
     "quantity": 1000,
     "unitary_weight": 2.5,
     "sould_out_date": null,

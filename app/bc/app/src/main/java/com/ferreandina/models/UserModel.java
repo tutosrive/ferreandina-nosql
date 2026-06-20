@@ -1,10 +1,8 @@
 package com.ferreandina.models;
 
-import org.json.JSONObject;
 import org.jspecify.annotations.Nullable;
-import com.ferreandina.interfaces.Model;
 
-public class UserModel implements Model {
+public class UserModel extends Model {
     @Nullable
     private Integer id;
     @Nullable
@@ -70,15 +68,5 @@ public class UserModel implements Model {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return this.toJsonObject().toString(4);
-    }
-
-    public final JSONObject toJsonObject() {
-        JSONObject json = new JSONObject(this);
-        return json;
     }
 }
