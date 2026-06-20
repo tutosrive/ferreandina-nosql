@@ -12,7 +12,7 @@ public class ProductModel {
     @Nullable
     private String description;
     @Nullable
-    private Float price;
+    private Double price;
     @Nullable
     private Integer category_id;
     @Nullable
@@ -28,7 +28,8 @@ public class ProductModel {
         this(null, null, null, null, null, null, null, null, null);
     }
 
-    public ProductModel(Integer id, String name, String description, Float price, Integer category_id, Integer quantity,
+    public ProductModel(Integer id, String name, String description, Double price, Integer category_id,
+            Integer quantity,
             Float unitary_weight, LocalDate sould_out_date, Document suplier) {
         this.id = id;
         this.name = name;
@@ -65,11 +66,11 @@ public class ProductModel {
         this.description = description;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return this.price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

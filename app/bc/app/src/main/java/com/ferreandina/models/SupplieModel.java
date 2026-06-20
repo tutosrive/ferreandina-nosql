@@ -3,18 +3,18 @@ package com.ferreandina.models;
 import java.time.LocalDate;
 import org.bson.Document;
 
-public class SuppliesModel extends Model {
+public class SupplieModel extends Model {
     private Integer id;
     private Document suplier;
     private Document products;
     private Integer defective_quanity;
     private LocalDate entry_date;
 
-    public SuppliesModel() {
+    public SupplieModel() {
         this(null, null, null, null, null);
     }
 
-    public SuppliesModel(Integer id, Document suplier, Document products, Integer defective_quanity,
+    public SupplieModel(Integer id, Document suplier, Document products, Integer defective_quanity,
             LocalDate entry_date) {
         this.id = id;
         this.suplier = suplier;
