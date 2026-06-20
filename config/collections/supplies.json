@@ -1,0 +1,14 @@
+[
+  {
+    "__id": 1,
+    "supplier": { "id": 1, "name": "Fierros La Central" },
+    "products": [
+      { "id": 1, "name": "hammer", "quantity": 45 },
+      { "id": 2, "name": "power_drill", "quantity": 45 },
+      { "id": 7, "name": "safety_glasses", "quantity": 45 },
+      { "id": 6, "name": "copper_wire_12awg", "quantity": 45 }
+    ],
+    "defective_quanity": 12,
+    "entry_date": "12/08/2026"
+  }
+]

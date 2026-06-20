@@ -1,97 +1,97 @@
 [
-    {
-        "id": 1,
-        "name": "construction-materials",
-        "description": "Basic materials for construction and renovation projects such as cement, sand, bricks, blocks, mixes, plaster, mortars and complementary supplies"
-    },
-    {
-        "id": 2,
-        "name": "pvc",
-        "description": "PVC products such as pipes, fittings, elbows, joints, valves and accessories for water, drainage and other systems"
-    },
-    {
-        "id": 3,
-        "name": "locks-and-padlocks",
-        "description": "Security products for doors, furniture and access points, including locks, latches, padlocks and protective accessories"
-    },
-    {
-        "id": 4,
-        "name": "drywall",
-        "description": "Drywall construction materials such as gypsum boards, metal profiles, corners, tapes, joint compounds and accessories for walls and ceilings"
-    },
-    {
-        "id": 5,
-        "name": "electrical",
-        "description": "Electrical installation products such as cables, plugs, switches, outlets, breakers, conduits, light bulbs and electrical accessories"
-    },
-    {
-        "id": 6,
-        "name": "galvanized",
-        "description": "Metal products with a zinc coating for corrosion protection, used in structures, pipes, fasteners and construction work"
-    },
-    {
-        "id": 7,
-        "name": "bathroom-fixtures",
-        "description": "Water supply and control accessories for sinks and bathrooms, including faucets, valves, keys and replacement parts"
-    },
-    {
-        "id": 8,
-        "name": "kitchen-and-laundry-fixtures",
-        "description": "Faucets and accessories for kitchens and laundry areas, including taps, mixers, pipes and sink accessories"
-    },
-    {
-        "id": 9,
-        "name": "plumbing",
-        "description": "Plumbing products such as valves, drains, connections and bathroom installation components"
-    },
-    {
-        "id": 10,
-        "name": "power-tools",
-        "description": "Electric-powered equipment and machines for construction, repair and maintenance work, such as drills, grinders, sanders, saws and accessories"
-    },
-    {
-        "id": 11,
-        "name": "hand-tools",
-        "description": "Tools for mechanical, assembly and repair tasks without electricity, such as hammers, screwdrivers, wrenches, pliers and other manual tools"
-    },
-    {
-        "id": 12,
-        "name": "safety-equipment",
-        "description": "Protective equipment for construction, industrial and maintenance work, such as gloves, safety glasses, helmets, masks, hearing protection and safety gear"
-    },
-    {
-        "id": 13,
-        "name": "steel",
-        "description": "Metal materials for structures and manufacturing such as bars, rods, profiles, sheets and steel components"
-    },
-    {
-        "id": 14,
-        "name": "home",
-        "description": "Products for household maintenance and daily use, including cleaning supplies, organization items, accessories and home solutions"
-    },
-    {
-        "id": 15,
-        "name": "adhesives-and-sealants",
-        "description": "Adhesives and sealants for joining and sealing materials such as silicones, epoxies, contact cement and specialized bonding products"
-    },
-    {
-        "id": 16,
-        "name": "paints",
-        "description": "Products for surface finishing and protection such as interior and exterior paints, enamels, anti-corrosion coatings, varnishes and accessories"
-    },
-    {
-        "id": 17,
-        "name": "nails",
-        "description": "Metal fastening elements for woodworking, construction and carpentry in different sizes and formats"
-    },
-    {
-        "id": 18,
-        "name": "fasteners",
-        "description": "Screws, nuts, washers, bolts and other fastening accessories for assembly and securing parts"
-    },
-    {
-        "id": 18,
-        "name": "pipes-and-curtain-accessories",
-        "description": "Products for installing and maintaining piping systems, together with curtain accessories such as tubes, fittings, supports, rods, rails, terminals and mounting components"
-    }
+  {
+    "id": 1,
+    "name": "construction-materials",
+    "description": "Basic materials for construction and renovation projects such as cement, sand, bricks, blocks, mixes, plaster, mortars and complementary supplies"
+  },
+  {
+    "id": 2,
+    "name": "pvc",
+    "description": "PVC products such as pipes, fittings, elbows, joints, valves and accessories for water, drainage and other systems"
+  },
+  {
+    "id": 3,
+    "name": "locks-and-padlocks",
+    "description": "Security products for doors, furniture and access points, including locks, latches, padlocks and protective accessories"
+  },
+  {
+    "id": 4,
+    "name": "drywall",
+    "description": "Drywall construction materials such as gypsum boards, metal profiles, corners, tapes, joint compounds and accessories for walls and ceilings"
+  },
+  {
+    "id": 5,
+    "name": "electrical",
+    "description": "Electrical installation products such as cables, plugs, switches, outlets, breakers, conduits, light bulbs and electrical accessories"
+  },
+  {
+    "id": 6,
+    "name": "galvanized",
+    "description": "Metal products with a zinc coating for corrosion protection, used in structures, pipes, fasteners and construction work"
+  },
+  {
+    "id": 7,
+    "name": "bathroom-fixtures",
+    "description": "Water supply and control accessories for sinks and bathrooms, including faucets, valves, keys and replacement parts"
+  },
+  {
+    "id": 8,
+    "name": "kitchen-and-laundry-fixtures",
+    "description": "Faucets and accessories for kitchens and laundry areas, including taps, mixers, pipes and sink accessories"
+  },
+  {
+    "id": 9,
+    "name": "plumbing",
+    "description": "Plumbing products such as valves, drains, connections and bathroom installation components"
+  },
+  {
+    "id": 10,
+    "name": "power-tools",
+    "description": "Electric-powered equipment and machines for construction, repair and maintenance work, such as drills, grinders, sanders, saws and accessories"
+  },
+  {
+    "id": 11,
+    "name": "hand-tools",
+    "description": "Tools for mechanical, assembly and repair tasks without electricity, such as hammers, screwdrivers, wrenches, pliers and other manual tools"
+  },
+  {
+    "id": 12,
+    "name": "safety-equipment",
+    "description": "Protective equipment for construction, industrial and maintenance work, such as gloves, safety glasses, helmets, masks, hearing protection and safety gear"
+  },
+  {
+    "id": 13,
+    "name": "steel",
+    "description": "Metal materials for structures and manufacturing such as bars, rods, profiles, sheets and steel components"
+  },
+  {
+    "id": 14,
+    "name": "home",
+    "description": "Products for household maintenance and daily use, including cleaning supplies, organization items, accessories and home solutions"
+  },
+  {
+    "id": 15,
+    "name": "adhesives-and-sealants",
+    "description": "Adhesives and sealants for joining and sealing materials such as silicones, epoxies, contact cement and specialized bonding products"
+  },
+  {
+    "id": 16,
+    "name": "paints",
+    "description": "Products for surface finishing and protection such as interior and exterior paints, enamels, anti-corrosion coatings, varnishes and accessories"
+  },
+  {
+    "id": 17,
+    "name": "nails",
+    "description": "Metal fastening elements for woodworking, construction and carpentry in different sizes and formats"
+  },
+  {
+    "id": 18,
+    "name": "fasteners",
+    "description": "Screws, nuts, washers, bolts and other fastening accessories for assembly and securing parts"
+  },
+  {
+    "id": 18,
+    "name": "pipes-and-curtain-accessories",
+    "description": "Products for installing and maintaining piping systems, together with curtain accessories such as tubes, fittings, supports, rods, rails, terminals and mounting components"
+  }
 ]
