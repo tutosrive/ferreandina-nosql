@@ -33,7 +33,8 @@ public class CustomerController extends Controller<CustomerModel> {
 
     @Override
     public void getOne(Context ctx, String id) {
-        Bson filter = Filters.eq("_id", id);
+        Integer idInt = Integer.parseInt(id);
+        Bson filter = Filters.eq("_id", idInt);
         CustomerModel customer = this.service.getOne(filter);
         this.resultMan.javalinReturn(ctx, customer, String.format("Customer get with id: %s", id));
     }

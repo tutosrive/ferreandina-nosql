@@ -1,10 +1,12 @@
 package com.ferreandina.models;
 
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.json.JSONObject;
 import org.jspecify.annotations.Nullable;
 
 public class Model {
     @Nullable
+    @BsonId
     protected Integer id;
 
     public Integer getId() {
