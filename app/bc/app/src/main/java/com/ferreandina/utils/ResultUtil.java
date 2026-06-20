@@ -2,26 +2,51 @@ package com.ferreandina.utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.mongodb.client.FindIterable;
+
 import io.javalin.http.Context;
 
-public class ResultUtil {
-    public static void javalinReturn(Context ctx, JSONArray data, String msg) {
+public class ResultUtil<T> {
+    public void javalinReturn(Context ctx, JSONArray data, String msg) {
         JSONObject json = new JSONObject();
         json.put("message", msg);
         json.put("status", ctx.statusCode());
-        json.put("data", data);
-        ctx.json(json.toString());
+        json.put("data", data.toList());
+        ctx.result(json.toString());
     }
 
-    public static void javalinReturn(Context ctx, JSONArray json) {
-        ResultUtil.javalinReturn(ctx, json, "");
+    public void javalinReturn(Context ctx, JSONArray json) {
+        this.javalinReturn(ctx, json, "");
     }
 
-    public static void javalinReturn(Context ctx) {
-        ResultUtil.javalinReturn(ctx, new JSONArray());
+    public void javalinReturn(Context ctx, T document) {
+        this.javalinReturn(ctx, document, "");
     }
 
-    public static void javalinReturn(Context ctx, String msg) {
-        ResultUtil.javalinReturn(ctx, new JSONArray(), msg);
+    public void javalinReturn(Context ctx, T document, String msg) {
+        JSONArray data = new JSONArray();
+        data.put(document);
+        this.javalinReturn(ctx, data, msg);
+    }
+
+    public void javalinReturn(Context ctx, FindIterable<T> iterable) {
+        this.javalinReturn(ctx, iterable, "");
+    }
+
+    public void javalinReturn(Context ctx, FindIterable<T> iterable, String msg) {
+        JSONArray data = new JSONArray();
+        iterable.forEach(document -> {
+            data.put(document);
+        });
+        this.javalinReturn(ctx, data, msg);
+    }
+
+    public void javalinReturn(Context ctx) {
+        this.javalinReturn(ctx, new JSONArray());
+    }
+
+    public void javalinReturn(Context ctx, String msg) {
+        this.javalinReturn(ctx, new JSONArray(), msg);
     }
 }

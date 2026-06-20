@@ -1,6 +1,5 @@
 package com.ferreandina.models;
 
-import org.bson.types.ObjectId;
 import org.jspecify.annotations.Nullable;
 
 public class WorkerModel extends Model {
@@ -23,7 +22,7 @@ public class WorkerModel extends Model {
         this(null, null, null, null, null, null, null, null);
     }
 
-    public WorkerModel(ObjectId id, String name, Integer age, String speciality, Float weight, String email,
+    public WorkerModel(Integer id, String name, Integer age, String speciality, Float weight, String email,
             String phone, Float salary) {
         this.id = id;
         this.name = name;

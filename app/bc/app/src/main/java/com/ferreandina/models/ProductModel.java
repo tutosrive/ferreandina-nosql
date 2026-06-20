@@ -2,7 +2,7 @@ package com.ferreandina.models;
 
 import java.time.LocalDate;
 import org.bson.Document;
-import org.bson.types.ObjectId;
+
 import org.jspecify.annotations.Nullable;
 
 public class ProductModel extends Model {
@@ -27,7 +27,7 @@ public class ProductModel extends Model {
         this(null, null, null, null, null, null, null, null, null);
     }
 
-    public ProductModel(ObjectId id, String name, String description, Double price, Integer category_id,
+    public ProductModel(Integer id, String name, String description, Double price, Integer category_id,
             Integer quantity,
             Float unitary_weight, LocalDate sould_out_date, Document suplier) {
         this.id = id;

@@ -1,14 +1,22 @@
 package com.ferreandina.controllers;
 
+import com.ferreandina.models.Model;
+import com.ferreandina.services.Service;
+import com.ferreandina.utils.ResultUtil;
 import com.ferreandina.utils.Validator;
 import io.javalin.apibuilder.CrudHandler;
 import io.javalin.http.Context;
 
-public abstract class Controller<T> implements CrudHandler {
+public abstract class Controller<T extends Model> implements CrudHandler {
     Validator<T> validator;
+    ResultUtil<T> resultMan;
+    Service<T> service;
 
-    public Controller() {
+    public Controller(Class<T> clazz, String collectionName) {
         this.validator = new Validator<T>();
+        this.resultMan = new ResultUtil<>();
+        this.service = new Service<T>(clazz);
+        this.service.setCollection(collectionName);
     }
 
     @Override

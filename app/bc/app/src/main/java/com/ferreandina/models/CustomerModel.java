@@ -1,10 +1,11 @@
 package com.ferreandina.models;
 
-import org.bson.types.ObjectId;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.jspecify.annotations.Nullable;
 
 public class CustomerModel extends Model {
     @Nullable
+    @BsonProperty("NI")
     private String ni;
     @Nullable
     private String alias;
@@ -17,7 +18,7 @@ public class CustomerModel extends Model {
         this(null, null, null, null, null);
     }
 
-    public CustomerModel(ObjectId id, String ni, String alias, String category, String phone) {
+    public CustomerModel(Integer id, String ni, String alias, String category, String phone) {
         this.id = id;
         this.ni = ni;
         this.alias = alias;

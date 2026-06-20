@@ -1,7 +1,7 @@
 package com.ferreandina.models;
 
 import org.bson.Document;
-import org.bson.types.ObjectId;
+
 import org.jspecify.annotations.Nullable;
 
 public class BranchModel extends Model {
@@ -23,7 +23,7 @@ public class BranchModel extends Model {
     }
 
     public BranchModel(
-            ObjectId id, String name, String city, String direction,
+            Integer id, String name, String city, String direction,
             Boolean isMain, Document[] products, Document[] workers) {
         this.setId(id);
         this.setName(name);

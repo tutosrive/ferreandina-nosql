@@ -1,6 +1,5 @@
 package com.ferreandina.models;
 
-import org.bson.types.ObjectId;
 import org.jspecify.annotations.Nullable;
 
 public class SupplierModel extends Model {
@@ -15,7 +14,7 @@ public class SupplierModel extends Model {
         this(null, null, null, null);
     }
 
-    public SupplierModel(ObjectId id, String name, String email, String phone) {
+    public SupplierModel(Integer id, String name, String email, String phone) {
         this.id = id;
         this.name = name;
         this.email = email;

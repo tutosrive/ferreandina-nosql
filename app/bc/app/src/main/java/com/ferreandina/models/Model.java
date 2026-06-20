@@ -1,18 +1,17 @@
 package com.ferreandina.models;
 
-import org.bson.types.ObjectId;
 import org.json.JSONObject;
 import org.jspecify.annotations.Nullable;
 
 public class Model {
     @Nullable
-    protected ObjectId id;
+    protected Integer id;
 
-    public ObjectId getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

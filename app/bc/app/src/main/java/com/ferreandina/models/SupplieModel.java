@@ -2,7 +2,7 @@ package com.ferreandina.models;
 
 import java.time.LocalDate;
 import org.bson.Document;
-import org.bson.types.ObjectId;
+
 import org.jspecify.annotations.Nullable;
 
 public class SupplieModel extends Model {
@@ -19,7 +19,7 @@ public class SupplieModel extends Model {
         this(null, null, null, null, null);
     }
 
-    public SupplieModel(ObjectId id, Document suplier, Document products, Integer defective_quanity,
+    public SupplieModel(Integer id, Document suplier, Document products, Integer defective_quanity,
             LocalDate entry_date) {
         this.id = id;
         this.suplier = suplier;
