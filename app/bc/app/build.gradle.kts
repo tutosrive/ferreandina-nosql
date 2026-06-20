@@ -47,3 +47,12 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+
+tasks.named("run") {
+    inputs.files(
+        fileTree("src/main/java") {
+            include("**/*.java")
+        }
+    )
+}

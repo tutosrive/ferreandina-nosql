@@ -1,0 +1,9 @@
+[
+  {
+    "product_id": 1,
+    "changes": [
+      { "previous_price": 12000, "new_price": 12500 },
+      { "previous_price": 12500, "new_price": 11500 }
+    ]
+  }
+]
