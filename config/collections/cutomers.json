@@ -1,9 +1,9 @@
 [
   {
     "_id": 1,
-    "NI": 1103720010,
+    "NI": "1103720010",
     "alias": "company1",
     "category": "company",
-    "telefono": "3126543214"
+    "phone": "3126543214"
   }
 ]

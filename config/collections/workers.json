@@ -6,7 +6,7 @@
     "speciality": "cashier",
     "weight": 12,
     "email": "sanchez.edu@ferreandina.com",
-    "telefono": 3212894567,
+    "phone": "3212894567",
     "salary": 1200000
   },
   {
@@ -16,7 +16,7 @@
     "speciality": "boss",
     "weight": 67,
     "email": "boss@ferreandina.com",
-    "telefono": 3212894568,
+    "phone": "3212894568",
     "salary": 12000000
   }
 ]
