@@ -1,10 +1,9 @@
 package com.ferreandina.models;
 
+import org.bson.types.ObjectId;
 import org.jspecify.annotations.Nullable;
 
-public class WorkerModel {
-    @Nullable
-    private Integer id;
+public class WorkerModel extends Model {
     @Nullable
     private String name;
     @Nullable
@@ -20,7 +19,11 @@ public class WorkerModel {
     @Nullable
     private Float salary;
 
-    public WorkerModel(Integer id, String name, Integer age, String speciality, Float weight, String email,
+    public WorkerModel() {
+        this(null, null, null, null, null, null, null, null);
+    }
+
+    public WorkerModel(ObjectId id, String name, Integer age, String speciality, Float weight, String email,
             String phone, Float salary) {
         this.id = id;
         this.name = name;
@@ -30,14 +33,6 @@ public class WorkerModel {
         this.email = email;
         this.phone = phone;
         this.salary = salary;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

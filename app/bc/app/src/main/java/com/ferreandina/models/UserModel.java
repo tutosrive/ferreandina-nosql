@@ -1,10 +1,9 @@
 package com.ferreandina.models;
 
+import org.bson.types.ObjectId;
 import org.jspecify.annotations.Nullable;
 
 public class UserModel extends Model {
-    @Nullable
-    private Integer id;
     @Nullable
     private String name;
     @Nullable
@@ -18,11 +17,11 @@ public class UserModel extends Model {
         this(null, null, null, null);
     }
 
-    public UserModel(Integer id, String name, String lastname, String email) {
+    public UserModel(ObjectId id, String name, String lastname, String email) {
         this(id, name, lastname, email, -1);
     }
 
-    public UserModel(Integer id, String name, String lastname, String email, Integer age) {
+    public UserModel(ObjectId id, String name, String lastname, String email, Integer age) {
         this.setId(id);
         this.setName(lastname);
         this.setLastname(lastname);
@@ -42,10 +41,6 @@ public class UserModel extends Model {
         return this.email;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
-
     public String getLastname() {
         return lastname;
     }
@@ -56,10 +51,6 @@ public class UserModel extends Model {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public void setLastname(String lastname) {

@@ -1,10 +1,9 @@
 package com.ferreandina.models;
 
+import org.bson.types.ObjectId;
 import org.jspecify.annotations.Nullable;
 
 public class CategoryModel extends Model {
-    @Nullable
-    private Integer id;
     @Nullable
     private String name;
     @Nullable
@@ -14,18 +13,10 @@ public class CategoryModel extends Model {
         this(null, null, null);
     }
 
-    public CategoryModel(Integer id, String name, String description) {
+    public CategoryModel(ObjectId id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

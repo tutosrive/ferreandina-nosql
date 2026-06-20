@@ -1,10 +1,9 @@
 package com.ferreandina.models;
 
+import org.bson.types.ObjectId;
 import org.jspecify.annotations.Nullable;
 
 public class CustomerModel extends Model {
-    @Nullable
-    private Integer id;
     @Nullable
     private String ni;
     @Nullable
@@ -18,20 +17,12 @@ public class CustomerModel extends Model {
         this(null, null, null, null, null);
     }
 
-    public CustomerModel(Integer id, String ni, String alias, String category, String phone) {
+    public CustomerModel(ObjectId id, String ni, String alias, String category, String phone) {
         this.id = id;
         this.ni = ni;
         this.alias = alias;
         this.category = category;
         this.phone = phone;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNi() {
