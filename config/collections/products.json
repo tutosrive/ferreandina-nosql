@@ -1,6 +1,6 @@
 [
   {
-    "__id": 1,
+    "_id": 1,
     "name": "hammer",
     "description": "Tools used for striking, driving nails, breaking materials and performing carpentry, construction and repair tasks",
     "price": 100,

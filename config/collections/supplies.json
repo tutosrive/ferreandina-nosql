@@ -1,6 +1,6 @@
 [
   {
-    "__id": 1,
+    "_id": 1,
     "supplier": { "id": 1, "name": "Fierros La Central" },
     "products": [
       { "id": 1, "name": "hammer", "quantity": 45 },

@@ -1,6 +1,6 @@
 [
   {
-    "__id": 1,
+    "_id": 1,
     "name": "Eduardo Sánchez",
     "age": 27,
     "speciality": "cashier",
@@ -10,7 +10,7 @@
     "salary": 1200000
   },
   {
-    "__id": 2,
+    "_id": 2,
     "name": "Santiago Marin",
     "age": 19,
     "speciality": "boss",
