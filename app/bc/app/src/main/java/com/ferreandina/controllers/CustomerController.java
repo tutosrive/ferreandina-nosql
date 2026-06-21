@@ -3,9 +3,9 @@ package com.ferreandina.controllers;
 import org.bson.conversions.Bson;
 
 import com.ferreandina.models.CustomerModel;
+import com.ferreandina.utils.Utils;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.model.Filters;
-
 import io.javalin.http.Context;
 
 public class CustomerController extends Controller<CustomerModel> {
@@ -22,7 +22,8 @@ public class CustomerController extends Controller<CustomerModel> {
 
     @Override
     public void delete(Context ctx, String id) {
-        this.resultMan.javalinReturn(ctx, String.format("Customer deleted with id: %s", id));
+        Integer idInt = Integer.parseInt(id);
+        this.resultMan.javalinReturn(ctx, String.format("Customer deleted with id: %d", idInt));
     }
 
     @Override
@@ -41,6 +42,16 @@ public class CustomerController extends Controller<CustomerModel> {
 
     @Override
     public void update(Context ctx, String id) {
-        this.resultMan.javalinReturn(ctx, String.format("Missing call service for CUstomer with id: %s", id));
+        try {
+            Integer idInt = Integer.parseInt(id);
+            CustomerModel customerUpdate = this.validator.validateBody(CustomerModel.class, ctx);
+            Bson filter = Filters.eq("_id", idInt);
+            Bson updates = Utils.fromModelToBsonUpdate(customerUpdate);
+            this.service.updateOne(filter, updates);
+            this.resultMan.javalinReturn(ctx, String.format("Customer with id %d updated with this data: %s", idInt,
+                    updates.toBsonDocument().get("value")));
+        } catch (Exception e) {
+            this.resultMan.javalinReturn(ctx, e);
+        }
     }
 }
