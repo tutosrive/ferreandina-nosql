@@ -29,6 +29,8 @@ dependencies {
     // Source: https://mvnrepository.com/artifact/org.json/json
     implementation("org.json:json:20260522")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.21.2")
+    // Source: https://mvnrepository.com/artifact/io.github.cdimascio/dotenv-java
+    implementation("io.github.cdimascio:dotenv-java:3.2.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

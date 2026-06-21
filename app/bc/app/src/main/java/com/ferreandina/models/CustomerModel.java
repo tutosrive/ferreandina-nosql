@@ -1,11 +1,11 @@
 package com.ferreandina.models;
 
+import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.jspecify.annotations.Nullable;
 
 public class CustomerModel extends Model {
     @Nullable
-    private Integer id;
-    @Nullable
+    @BsonProperty("NI")
     private String ni;
     @Nullable
     private String alias;
@@ -24,14 +24,6 @@ public class CustomerModel extends Model {
         this.alias = alias;
         this.category = category;
         this.phone = phone;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNi() {

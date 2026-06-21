@@ -1,11 +1,10 @@
 package com.ferreandina.models;
 
 import org.bson.Document;
+
 import org.jspecify.annotations.Nullable;
 
 public class BranchModel extends Model {
-    @Nullable
-    private Integer id;
     @Nullable
     private String name;
     @Nullable
@@ -33,10 +32,6 @@ public class BranchModel extends Model {
         this.setIs_main(isMain);
         this.setWorkers(workers);
         this.setProducts(products);
-    }
-
-    public Integer getId() {
-        return this.id;
     }
 
     public Document[] getProducts() {
@@ -85,9 +80,5 @@ public class BranchModel extends Model {
 
     public void setWorkers(Document[] workers) {
         this.workers = workers;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }

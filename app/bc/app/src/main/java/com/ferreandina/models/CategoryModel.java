@@ -4,8 +4,6 @@ import org.jspecify.annotations.Nullable;
 
 public class CategoryModel extends Model {
     @Nullable
-    private Integer id;
-    @Nullable
     private String name;
     @Nullable
     private String description;
@@ -18,14 +16,6 @@ public class CategoryModel extends Model {
         this.id = id;
         this.name = name;
         this.description = description;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

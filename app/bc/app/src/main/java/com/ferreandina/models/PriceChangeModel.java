@@ -4,6 +4,10 @@ public class PriceChangeModel extends Model {
     private Integer product_id;
     private Change[] changes;
 
+    public PriceChangeModel() {
+        this(null, null);
+    }
+
     public PriceChangeModel(Integer product_id, Change[] changes) {
         this.product_id = product_id;
         this.changes = changes;
@@ -30,6 +34,10 @@ public class PriceChangeModel extends Model {
 class Change {
     private Double previous_price;
     private Double new_price;
+
+    public Change() {
+        this(null, null);
+    }
 
     public Change(Double previous_price, Double new_price) {
         this.previous_price = previous_price;

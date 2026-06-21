@@ -3,11 +3,16 @@ package com.ferreandina.models;
 import java.time.LocalDate;
 import org.bson.Document;
 
+import org.jspecify.annotations.Nullable;
+
 public class SupplieModel extends Model {
-    private Integer id;
+    @Nullable
     private Document suplier;
+    @Nullable
     private Document products;
+    @Nullable
     private Integer defective_quanity;
+    @Nullable
     private LocalDate entry_date;
 
     public SupplieModel() {
@@ -21,14 +26,6 @@ public class SupplieModel extends Model {
         this.products = products;
         this.defective_quanity = defective_quanity;
         this.entry_date = entry_date;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Document getSuplier() {

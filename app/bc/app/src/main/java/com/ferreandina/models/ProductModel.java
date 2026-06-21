@@ -2,11 +2,10 @@ package com.ferreandina.models;
 
 import java.time.LocalDate;
 import org.bson.Document;
+
 import org.jspecify.annotations.Nullable;
 
-public class ProductModel {
-    @Nullable
-    private Integer id;
+public class ProductModel extends Model {
     @Nullable
     private String name;
     @Nullable
@@ -40,14 +39,6 @@ public class ProductModel {
         this.unitary_weight = unitary_weight;
         this.sould_out_date = sould_out_date;
         this.suplier = suplier;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
