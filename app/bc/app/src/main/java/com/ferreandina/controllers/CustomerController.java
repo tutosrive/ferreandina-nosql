@@ -1,7 +1,6 @@
 package com.ferreandina.controllers;
 
 import org.bson.conversions.Bson;
-
 import com.ferreandina.models.CustomerModel;
 import com.ferreandina.utils.Utils;
 import com.mongodb.client.FindIterable;
@@ -23,7 +22,10 @@ public class CustomerController extends Controller<CustomerModel> {
     @Override
     public void delete(Context ctx, String id) {
         Integer idInt = Integer.parseInt(id);
-        this.resultMan.javalinReturn(ctx, String.format("Customer deleted with id: %d", idInt));
+        Bson filter = Filters.eq("_id", idInt);
+        Long deletedCount = this.service.delete(filter);
+        this.resultMan.javalinUpdateDelete(ctx, deletedCount, true,
+                String.format("Customer deleted with id: %d", idInt));
     }
 
     @Override
@@ -47,9 +49,10 @@ public class CustomerController extends Controller<CustomerModel> {
             CustomerModel customerUpdate = this.validator.validateBody(CustomerModel.class, ctx);
             Bson filter = Filters.eq("_id", idInt);
             Bson updates = Utils.fromModelToBsonUpdate(customerUpdate);
-            this.service.updateOne(filter, updates);
-            this.resultMan.javalinReturn(ctx, String.format("Customer with id %d updated with this data: %s", idInt,
-                    updates.toBsonDocument().get("value")));
+            Long updatedCount = this.service.updateOne(filter, updates);
+            this.resultMan.javalinUpdateDelete(
+                    ctx, updatedCount, false,
+                    String.format("Customer with id %d updated", idInt));
         } catch (Exception e) {
             this.resultMan.javalinReturn(ctx, e);
         }

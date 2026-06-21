@@ -27,25 +27,21 @@ public abstract class Controller<T extends Model> implements CrudHandler {
     @Override
     public void delete(Context ctx, String id) {
         ctx.result(String.format("Object with id \"%s\" deleted sucessfully", id));
-
     }
 
     @Override
     public void getAll(Context ctx) {
         ctx.result("There are all objects ...");
-
     }
 
     @Override
     public void getOne(Context ctx, String id) {
         ctx.result(String.format("There are object with id \"%s\" ...", id));
-
     }
 
     @Override
     public void update(Context ctx, String id) {
         ctx.result(String.format("Object with id \"%s\" updated sucessfully", id));
-
     }
 
 }

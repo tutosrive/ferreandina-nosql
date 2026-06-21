@@ -13,6 +13,7 @@ public class ResultUtil<T> {
         json.put("message", msg);
         json.put("status", ctx.statusCode());
         json.put("data", data.toList());
+        json.put("size", data.length());
         ctx.result(json.toString());
     }
 
@@ -62,5 +63,16 @@ public class ResultUtil<T> {
                 .put("error", error)
                 .put("status", ctx.status(500));
         ctx.result(json.toString());
+    }
+
+    public void javalinUpdateDelete(Context ctx, Long count, Boolean isDelete) {
+        this.javalinUpdateDelete(ctx, count, isDelete, "");
+    }
+
+    public void javalinUpdateDelete(Context ctx, Long count, Boolean isDelete, String msg) {
+        String key = isDelete ? "delete_count" : "update_count";
+        JSONObject data = new JSONObject().put(key, count);
+        JSONArray arr = new JSONArray().put(data);
+        this.javalinReturn(ctx, arr);
     }
 }
