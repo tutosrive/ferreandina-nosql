@@ -49,4 +49,18 @@ public class ResultUtil<T> {
     public void javalinReturn(Context ctx, String msg) {
         this.javalinReturn(ctx, new JSONArray(), msg);
     }
+
+    public void javalinReturn(Context ctx, Exception e) {
+        JSONObject error = new JSONObject()
+                .put("message", e.getMessage())
+                .put("cause", e.getCause())
+                .put("class", e.getClass())
+                .put("stack-trace", e.getStackTrace());
+        JSONObject json = new JSONObject()
+                .put("message", "")
+                .put("data", new JSONArray())
+                .put("error", error)
+                .put("status", ctx.status(500));
+        ctx.result(json.toString());
+    }
 }
