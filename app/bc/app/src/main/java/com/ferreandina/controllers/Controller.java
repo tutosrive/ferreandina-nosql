@@ -1,5 +1,6 @@
 package com.ferreandina.controllers;
 
+import java.util.Map;
 import org.bson.conversions.Bson;
 import com.ferreandina.models.Model;
 import com.ferreandina.services.Service;
@@ -63,9 +64,10 @@ public abstract class Controller<T extends Model> implements CrudHandler {
     public void update(Context ctx, String id) {
         try {
             Integer idInt = Integer.parseInt(id);
-            T documentUpdate = this.validator.validateBody(this.clazz, ctx);
             Bson filter = Filters.eq("_id", idInt);
-            Bson updates = Utils.fromModelToBsonUpdate(documentUpdate);
+            @SuppressWarnings("unchecked")
+            Map<String, Object> bodyMap = ctx.bodyAsClass(Map.class);
+            Bson updates = Utils.fromMapToBsonUpdate(bodyMap);
             Long updatedCount = this.service.updateOne(filter, updates);
             this.resultMan.javalinUpdateDelete(
                     ctx, updatedCount, false,
