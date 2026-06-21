@@ -1,4 +1,4 @@
 **/**.class
-app/bc/app/bin
+**/bin/
 .env
 **/.env
