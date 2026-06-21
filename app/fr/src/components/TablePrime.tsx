@@ -298,7 +298,6 @@ export class TablePrime extends Component<TablePrimeProps, TablePrimeState> {
           {data.templatesAdditionalColumns?.end}
         </DataTable>
 
-        {/* Export confirmation dialog */}
         <DialogConfirmComponent
           visible={dialogExportVisible}
           message="Do you really want to export the table data?"
@@ -306,7 +305,6 @@ export class TablePrime extends Component<TablePrimeProps, TablePrimeState> {
           handleReject={this.hideConfirmExport}
         />
 
-        {/* Remove confirmation dialog */}
         <DialogConfirmComponent
           visible={dialogRemoveVisible}
           message={removeTemplate!}
