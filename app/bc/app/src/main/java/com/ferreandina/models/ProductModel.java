@@ -1,8 +1,6 @@
 package com.ferreandina.models;
 
 import java.time.LocalDate;
-import org.bson.Document;
-
 import org.jspecify.annotations.Nullable;
 
 public class ProductModel extends Model {
@@ -21,7 +19,7 @@ public class ProductModel extends Model {
     @Nullable
     private LocalDate sould_out_date;
     @Nullable
-    private Document suplier;
+    private SupplierModel suplier;
 
     public ProductModel() {
         this(null, null, null, null, null, null, null, null, null);
@@ -29,7 +27,7 @@ public class ProductModel extends Model {
 
     public ProductModel(Integer id, String name, String description, Double price, Integer category_id,
             Integer quantity,
-            Float unitary_weight, LocalDate sould_out_date, Document suplier) {
+            Float unitary_weight, LocalDate sould_out_date, SupplierModel suplier) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -97,11 +95,11 @@ public class ProductModel extends Model {
         this.sould_out_date = sould_out_date;
     }
 
-    public Document getSuplier() {
+    public SupplierModel getSuplier() {
         return this.suplier;
     }
 
-    public void setSuplier(Document suplier) {
+    public void setSuplier(SupplierModel suplier) {
         this.suplier = suplier;
     }
 

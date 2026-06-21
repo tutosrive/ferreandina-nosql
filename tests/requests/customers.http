@@ -1,0 +1,7 @@
+@url = http://localhost:8080/customers
+
+# Get All
+GET {{url}}
+
+# Get One By ID
+GET {{url}}/1

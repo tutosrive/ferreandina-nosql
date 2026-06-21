@@ -9,6 +9,12 @@ public class App {
         Javalin.create(
                 config -> {
                     new Routes(config);
+
+                    config.bundledPlugins.enableCors(cors -> {
+                        cors.addRule(it -> {
+                            it.anyHost();
+                        });
+                    });
                 }).start(8080);
     }
 }

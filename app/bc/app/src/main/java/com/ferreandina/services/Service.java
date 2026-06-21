@@ -1,10 +1,12 @@
 package com.ferreandina.services;
 
+import org.bson.BsonValue;
 import org.bson.conversions.Bson;
 
 import com.ferreandina.database.Connection;
 import com.ferreandina.models.Model;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 
@@ -16,9 +18,9 @@ public class Service<T extends Model> {
         this.conn = new Connection<T>(clazz);
     }
 
-    public final String add(T document) {
+    public final BsonValue add(T document) {
         InsertOneResult result = this.conn.collection.insertOne(document);
-        return result.getInsertedId().toString();
+        return result.getInsertedId();
     }
 
     /**
@@ -59,6 +61,11 @@ public class Service<T extends Model> {
     public final Long updateMany(Bson query, Bson update) {
         UpdateResult result = this.conn.collection.updateMany(query, update);
         return result.getModifiedCount();
+    }
+
+    public final Long delete(Bson query) {
+        DeleteResult result = this.conn.collection.deleteOne(query);
+        return result.getDeletedCount();
     }
 
     public Connection<T> getConn() {
