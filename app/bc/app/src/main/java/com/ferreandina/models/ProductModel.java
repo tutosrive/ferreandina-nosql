@@ -1,6 +1,5 @@
 package com.ferreandina.models;
 
-import java.time.LocalDate;
 import org.jspecify.annotations.Nullable;
 
 public class ProductModel extends Model {
@@ -17,7 +16,7 @@ public class ProductModel extends Model {
     @Nullable
     private Float unitary_weight;
     @Nullable
-    private LocalDate sould_out_date;
+    private String sould_out_date;
     @Nullable
     private SupplierModel suplier;
 
@@ -27,7 +26,7 @@ public class ProductModel extends Model {
 
     public ProductModel(Integer id, String name, String description, Double price, Integer category_id,
             Integer quantity,
-            Float unitary_weight, LocalDate sould_out_date, SupplierModel suplier) {
+            Float unitary_weight, String sould_out_date, SupplierModel suplier) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -87,11 +86,11 @@ public class ProductModel extends Model {
         this.unitary_weight = unitary_weight;
     }
 
-    public LocalDate getSould_out_date() {
+    public String getSould_out_date() {
         return this.sould_out_date;
     }
 
-    public void setSould_out_date(LocalDate sould_out_date) {
+    public void setSould_out_date(String sould_out_date) {
         this.sould_out_date = sould_out_date;
     }
 

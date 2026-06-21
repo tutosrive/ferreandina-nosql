@@ -1,24 +1,24 @@
 package com.ferreandina.models;
 
-import java.time.LocalDate;
+import java.util.List;
 import org.jspecify.annotations.Nullable;
 
 public class SupplieModel extends Model {
     @Nullable
     private SupplierModel suplier;
     @Nullable
-    private ProductModel products;
+    private List<ProductModel> products;
     @Nullable
     private Integer defective_quanity;
     @Nullable
-    private LocalDate entry_date;
+    private String entry_date;
 
     public SupplieModel() {
         this(null, null, null, null, null);
     }
 
-    public SupplieModel(Integer id, SupplierModel suplier, ProductModel products, Integer defective_quanity,
-            LocalDate entry_date) {
+    public SupplieModel(Integer id, SupplierModel suplier, List<ProductModel> products, Integer defective_quanity,
+            String entry_date) {
         this.id = id;
         this.suplier = suplier;
         this.products = products;
@@ -34,11 +34,11 @@ public class SupplieModel extends Model {
         this.suplier = suplier;
     }
 
-    public ProductModel getProducts() {
+    public List<ProductModel> getProducts() {
         return this.products;
     }
 
-    public void setProducts(ProductModel products) {
+    public void setProducts(List<ProductModel> products) {
         this.products = products;
     }
 
@@ -50,11 +50,11 @@ public class SupplieModel extends Model {
         this.defective_quanity = defective_quanity;
     }
 
-    public LocalDate getEntry_date() {
+    public String getEntry_date() {
         return this.entry_date;
     }
 
-    public void setEntry_date(LocalDate entry_date) {
+    public void setEntry_date(String entry_date) {
         this.entry_date = entry_date;
     }
 }
