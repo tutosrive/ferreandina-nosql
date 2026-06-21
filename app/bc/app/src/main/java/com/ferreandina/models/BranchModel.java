@@ -1,6 +1,6 @@
 package com.ferreandina.models;
 
-import org.bson.Document;
+import java.util.List;
 
 import org.jspecify.annotations.Nullable;
 
@@ -12,9 +12,9 @@ public class BranchModel extends Model {
     @Nullable
     private String direction;
     @Nullable
-    private Document[] products;
+    private List<ProductModel> products;
     @Nullable
-    private Document[] workers;
+    private List<WorkerModel> workers;
     @Nullable
     private Boolean is_main;
 
@@ -24,7 +24,7 @@ public class BranchModel extends Model {
 
     public BranchModel(
             Integer id, String name, String city, String direction,
-            Boolean isMain, Document[] products, Document[] workers) {
+            Boolean isMain, List<ProductModel> products, List<WorkerModel> workers) {
         this.setId(id);
         this.setName(name);
         this.setCity(city);
@@ -34,11 +34,11 @@ public class BranchModel extends Model {
         this.setProducts(products);
     }
 
-    public Document[] getProducts() {
+    public List<ProductModel> getProducts() {
         return this.products;
     }
 
-    public Document[] getWorkers() {
+    public List<WorkerModel> getWorkers() {
         return this.workers;
     }
 
@@ -74,11 +74,11 @@ public class BranchModel extends Model {
         this.name = name;
     }
 
-    public void setProducts(Document[] products) {
+    public void setProducts(List<ProductModel> products) {
         this.products = products;
     }
 
-    public void setWorkers(Document[] workers) {
+    public void setWorkers(List<WorkerModel> workers) {
         this.workers = workers;
     }
 }

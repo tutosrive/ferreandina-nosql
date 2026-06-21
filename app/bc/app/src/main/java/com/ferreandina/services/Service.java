@@ -1,5 +1,6 @@
 package com.ferreandina.services;
 
+import org.bson.BsonValue;
 import org.bson.conversions.Bson;
 
 import com.ferreandina.database.Connection;
@@ -17,9 +18,9 @@ public class Service<T extends Model> {
         this.conn = new Connection<T>(clazz);
     }
 
-    public final String add(T document) {
+    public final BsonValue add(T document) {
         InsertOneResult result = this.conn.collection.insertOne(document);
-        return result.getInsertedId().toString();
+        return result.getInsertedId();
     }
 
     /**

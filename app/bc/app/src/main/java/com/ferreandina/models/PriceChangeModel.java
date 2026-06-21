@@ -1,14 +1,16 @@
 package com.ferreandina.models;
 
+import java.util.List;
+
 public class PriceChangeModel extends Model {
     private Integer product_id;
-    private Change[] changes;
+    private List<Change> changes;
 
     public PriceChangeModel() {
         this(null, null);
     }
 
-    public PriceChangeModel(Integer product_id, Change[] changes) {
+    public PriceChangeModel(Integer product_id, List<Change> changes) {
         this.product_id = product_id;
         this.changes = changes;
     }
@@ -21,11 +23,11 @@ public class PriceChangeModel extends Model {
         this.product_id = product_id;
     }
 
-    public Change[] getChanges() {
+    public List<Change> getChanges() {
         return this.changes;
     }
 
-    public void setChanges(Change[] changes) {
+    public void setChanges(List<Change> changes) {
         this.changes = changes;
     }
 

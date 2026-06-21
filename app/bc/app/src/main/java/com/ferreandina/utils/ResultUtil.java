@@ -73,6 +73,6 @@ public class ResultUtil<T> {
         String key = isDelete ? "delete_count" : "update_count";
         JSONObject data = new JSONObject().put(key, count);
         JSONArray arr = new JSONArray().put(data);
-        this.javalinReturn(ctx, arr);
+        this.javalinReturn(ctx, arr, msg);
     }
 }
