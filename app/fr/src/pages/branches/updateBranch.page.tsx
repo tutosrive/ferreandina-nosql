@@ -53,7 +53,7 @@ export default function UpdateBranchPage() {
 
     const prodId = Number(selectedProductId);
     const qty = Number(assignQuantity);
-    const selectedProd = allProducts.find((p) => (p.id || p._id) === prodId);
+    const selectedProd = allProducts.find((p) => (p._id || p.id) === prodId);
 
     if (!selectedProd) {
       Swal.fire("Error", "Product not found", "error");
@@ -61,46 +61,48 @@ export default function UpdateBranchPage() {
       return;
     }
 
-    let currentProducts = branch.products ? [...branch.products] : [];
-    const existingProdIdx = currentProducts.findIndex(
-      (p) => (p.id || p._id) === prodId,
-    );
+    const cleanProductsMap = new Map<number, any>();
 
-    if (existingProdIdx > -1) {
-      currentProducts[existingProdIdx].quantity += qty;
+    (branch.products || []).forEach((p: any) => {
+      const pId = Number(p._id || p.id);
+      if (pId) {
+        if (cleanProductsMap.has(pId)) {
+          cleanProductsMap.get(pId).quantity += Number(p.quantity);
+        } else {
+          cleanProductsMap.set(pId, {
+            _id: pId,
+            name: p.name,
+            quantity: Number(p.quantity),
+            image: p.image || "",
+          });
+        }
+      }
+    });
+
+    if (cleanProductsMap.has(prodId)) {
+      cleanProductsMap.get(prodId).quantity += qty;
     } else {
-      currentProducts.push({
-        id: prodId,
+      cleanProductsMap.set(prodId, {
+        _id: prodId,
         name: selectedProd.name,
         quantity: qty,
         image: selectedProd.image || "",
       });
     }
 
-    const aggregatedProductsMap = new Map<number, any>();
-    currentProducts.forEach((p: any) => {
-      const pId = Number(p.id || p._id);
-      if (aggregatedProductsMap.has(pId)) {
-        aggregatedProductsMap.get(pId).quantity += p.quantity;
-      } else {
-        aggregatedProductsMap.set(pId, { ...p, id: pId });
-      }
-    });
-    currentProducts = Array.from(aggregatedProductsMap.values());
-
-    const updatedBranch = { ...branch, products: currentProducts };
+    const updatedBranch = {
+      ...branch,
+      products: Array.from(cleanProductsMap.values()),
+    };
     const res = await branchService.update(
-      branch.id || branch._id,
+      branch._id || branch.id,
       updatedBranch,
     );
 
     if (res.status === 200 || res.status === 201) {
       Swal.fire({
         title: "Success",
-        text:
-          existingProdIdx !== -1
-            ? "Stock updated!"
-            : "Product added to branch!",
+        text: "Product stock updated cleanly!",
         icon: "success",
         timer: 1500,
       });
@@ -122,8 +124,10 @@ export default function UpdateBranchPage() {
 
     const workerId = Number(selectedWorkerId);
 
-    const assignedBranch = allBranches.find((b) =>
-      b.workers?.some((w: any) => Number(w.id || w._id) === workerId),
+    const assignedBranch = allBranches.find(
+      (b) =>
+        (b._id || b.id) !== (branch._id || branch.id) &&
+        b.workers?.some((w: any) => Number(w._id || w.id) === workerId),
     );
 
     if (assignedBranch) {
@@ -136,28 +140,50 @@ export default function UpdateBranchPage() {
       return;
     }
 
-    const selectedWorker = allWorkers.find((w) => (w.id || w._id) === workerId);
+    const selectedWorker = allWorkers.find(
+      (w) => Number(w._id || w.id) === workerId,
+    );
     if (!selectedWorker) {
       Swal.fire("Error", "Worker not found", "error");
       setIsAssigningWorker(false);
       return;
     }
 
-    let currentWorkers = branch.workers ? [...branch.workers] : [];
-    currentWorkers.push({
-      id: workerId,
+    const cleanWorkersMap = new Map<number, any>();
+
+    (branch.workers || []).forEach((w: any) => {
+      const wId = Number(w._id || w.id);
+      if (wId) {
+        cleanWorkersMap.set(wId, {
+          _id: wId,
+          name: w.name,
+          image: w.image || "",
+        });
+      }
+    });
+
+    cleanWorkersMap.set(workerId, {
+      _id: workerId,
       name: selectedWorker.name,
       image: selectedWorker.image || "",
     });
 
-    const updatedBranch = { ...branch, workers: currentWorkers };
+    const updatedBranch = {
+      ...branch,
+      workers: Array.from(cleanWorkersMap.values()),
+    };
+
     const res = await branchService.update(
-      branch.id || branch._id,
+      branch._id || branch.id,
       updatedBranch,
     );
 
     if (res.status === 200 || res.status === 201) {
-      Swal.fire("Success", "Worker assigned successfully", "success");
+      Swal.fire(
+        "Success",
+        "Worker assigned and duplicates cleaned!",
+        "success",
+      );
       setSelectedWorkerId("");
       fetchData();
     } else {
@@ -193,7 +219,7 @@ export default function UpdateBranchPage() {
                 >
                   <option value="">-- Choose a product --</option>
                   {allProducts.map((p) => (
-                    <option key={p.id || p._id} value={p.id || p._id}>
+                    <option key={p._id || p.id} value={p._id || p.id}>
                       {p.name}
                     </option>
                   ))}
@@ -232,6 +258,7 @@ export default function UpdateBranchPage() {
           </button>
         </div>
 
+        {/* Panel de Asignación de Workers */}
         <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-md flex flex-col justify-between">
           <div>
             <h3 className="text-lg font-bold text-green-500 mb-4">
@@ -251,11 +278,12 @@ export default function UpdateBranchPage() {
                   {allWorkers.map((w) => {
                     const isBusy = allBranches.some((b) =>
                       b.workers?.some(
-                        (bw: any) => bw.id === w.id || bw._id === w._id,
+                        (bw: any) =>
+                          Number(bw._id || bw.id) === Number(w._id || w.id),
                       ),
                     );
                     return (
-                      <option key={w.id || w._id} value={w.id || w._id}>
+                      <option key={w._id || w.id} value={w._id || w.id}>
                         {w.name} {isBusy ? "(Assigned)" : ""}
                       </option>
                     );
