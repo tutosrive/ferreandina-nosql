@@ -7,19 +7,30 @@ public class CategoryModel extends Model {
     private String name;
     @Nullable
     private String description;
+    @Nullable
+    private String image;
 
     public CategoryModel() {
-        this(null, null, null);
+        this(null, null, null, null);
     }
 
-    public CategoryModel(Integer id, String name, String description) {
+    public CategoryModel(Integer id, String name, String image, String description) {
         this.id = id;
+        this.setImage(image);
         this.name = name;
         this.description = description;
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setName(String name) {
