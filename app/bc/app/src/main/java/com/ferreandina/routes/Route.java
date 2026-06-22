@@ -5,9 +5,9 @@ import io.javalin.apibuilder.CrudHandler;
 import io.javalin.config.JavalinConfig;
 
 public class Route<T extends CrudHandler> {
-    private T controller;
-    private JavalinConfig config;
-    private String pathRoute;
+    protected T controller;
+    protected JavalinConfig config;
+    protected String pathRoute;
 
     public Route(String path, JavalinConfig config, Class<T> clazz) {
         this.config = config;

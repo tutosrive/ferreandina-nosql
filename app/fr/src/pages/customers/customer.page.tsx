@@ -5,6 +5,7 @@ import TableDataPrimeComponent, {
 import customerService from "../../services/customer.service";
 import { useNavigate } from "react-router-dom";
 import LoaderPointsComponent from "../../components/LoaderPoints.component";
+import { Ripple } from "primereact/ripple";
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState([]);
@@ -31,8 +32,16 @@ export default function CustomersPage() {
 
   return (
     <>
-      <div className="text-center mb-2">
-        <h1>Customers</h1>
+      <div className="flex justify-between items-center mb-6 px-4">
+        <button
+          onClick={() => navigate("/")}
+          className="p-ripple orange-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+        >
+          Back
+          <Ripple />
+        </button>
+        <h1 className="text-2xl font-bold">Customers</h1>
+        <div className="w-16"></div>
       </div>
       <div className="flex justify-center">
         {customers.length > 0 ? (

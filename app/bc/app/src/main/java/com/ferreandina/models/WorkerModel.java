@@ -6,6 +6,8 @@ public class WorkerModel extends Model {
     @Nullable
     private String name;
     @Nullable
+    private String image;
+    @Nullable
     private Integer age;
     @Nullable
     private String speciality;
@@ -19,13 +21,15 @@ public class WorkerModel extends Model {
     private Float salary;
 
     public WorkerModel() {
-        this(null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null, null);
     }
 
-    public WorkerModel(Integer id, String name, Integer age, String speciality, Float weight, String email,
+    public WorkerModel(Integer id, String name, String image, Integer age, String speciality, Float weight,
+            String email,
             String phone, Float salary) {
         this.id = id;
         this.name = name;
+        this.setImage(image);
         this.age = age;
         this.speciality = speciality;
         this.weight = weight;
@@ -38,8 +42,16 @@ public class WorkerModel extends Model {
         return this.name;
     }
 
+    public String getImage() {
+        return this.image;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Integer getAge() {

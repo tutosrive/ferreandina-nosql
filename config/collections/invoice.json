@@ -1,11 +1,11 @@
 [
   {
     "_id": 1,
-    "customer": { "id": 1, "alias": "company1" },
-    "products": [{ "id": 1, "name": "hammer", "price": 100, "quantity": 2 }],
+    "customer": { "_id": 1, "alias": "company1" },
+    "products": [{ "_id": 1, "name": "hammer", "price": 100, "quantity": 2 }],
     "purchase_date": "21/06/2026",
     "total": 200,
     "branch": "ferreandina-manizales",
-    "worker": { "id": 1, "name": "Eduardo Sánchez" }
+    "worker": { "_id": 1, "name": "Eduardo Sánchez" }
   }
 ]

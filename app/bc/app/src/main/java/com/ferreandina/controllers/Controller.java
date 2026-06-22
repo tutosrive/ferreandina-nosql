@@ -14,10 +14,10 @@ import io.javalin.apibuilder.CrudHandler;
 import io.javalin.http.Context;
 
 public abstract class Controller<T extends Model> implements CrudHandler {
-    private Validator<T> validator;
-    private ResultUtil<T> resultMan;
-    private Service<T> service;
-    private Class<T> clazz;
+    protected Validator<T> validator;
+    protected ResultUtil<T> resultMan;
+    protected Service<T> service;
+    protected Class<T> clazz;
 
     public Controller(Class<T> clazz, String collectionName) {
         this.clazz = clazz;

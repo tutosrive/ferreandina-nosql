@@ -1,5 +1,5 @@
 export default interface Product {
-  _id?: number;
+  id?: number;
   name?: string;
   description?: string;
   price?: number;
@@ -8,4 +8,5 @@ export default interface Product {
   unitary_weight?: number;
   sould_out_date?: string;
   supplier?: { id: number; name: string };
+  image?: string;
 }

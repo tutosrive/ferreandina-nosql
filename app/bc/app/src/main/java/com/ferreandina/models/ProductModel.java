@@ -18,16 +18,19 @@ public class ProductModel extends Model {
     @Nullable
     private String sould_out_date;
     @Nullable
-    private SupplierModel suplier;
+    private SupplierModel supplier;
+    @Nullable
+    private String image;
 
     public ProductModel() {
-        this(null, null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null, null, null);
     }
 
-    public ProductModel(Integer id, String name, String description, Double price, Integer category_id,
+    public ProductModel(Integer id, String name, String image, String description, Double price, Integer category_id,
             Integer quantity,
-            Float unitary_weight, String sould_out_date, SupplierModel suplier) {
+            Float unitary_weight, String sould_out_date, SupplierModel supplier) {
         this.id = id;
+        this.image = image;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -35,7 +38,7 @@ public class ProductModel extends Model {
         this.quantity = quantity;
         this.unitary_weight = unitary_weight;
         this.sould_out_date = sould_out_date;
-        this.suplier = suplier;
+        this.supplier = supplier;
     }
 
     public String getName() {
@@ -94,12 +97,20 @@ public class ProductModel extends Model {
         this.sould_out_date = sould_out_date;
     }
 
-    public SupplierModel getSuplier() {
-        return this.suplier;
+    public SupplierModel getSupplier() {
+        return this.supplier;
     }
 
-    public void setSuplier(SupplierModel suplier) {
-        this.suplier = suplier;
+    public void setSupplier(SupplierModel supplier) {
+        this.supplier = supplier;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

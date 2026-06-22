@@ -6,17 +6,20 @@ public class SupplierModel extends Model {
     @Nullable
     private String name;
     @Nullable
+    private String image;
+    @Nullable
     private String email;
     @Nullable
     private String phone;
 
     public SupplierModel() {
-        this(null, null, null, null);
+        this(null, null, null, null, null);
     }
 
-    public SupplierModel(Integer id, String name, String email, String phone) {
+    public SupplierModel(Integer id, String name, String image, String email, String phone) {
         this.id = id;
         this.name = name;
+        this.setImage(image);
         this.email = email;
         this.phone = phone;
     }
@@ -25,8 +28,16 @@ public class SupplierModel extends Model {
         return this.name;
     }
 
+    public String getImage() {
+        return this.image;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getEmail() {

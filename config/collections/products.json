@@ -8,6 +8,7 @@
     "quantity": 1000,
     "unitary_weight": 2.5,
     "sould_out_date": null,
-    "supplier": { "id": 1, "name": "Fierros La Central" }
+    "supplier": { "_id": 1, "name": "Fierros La Central" },
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/hammer.webp"
   }
 ]
