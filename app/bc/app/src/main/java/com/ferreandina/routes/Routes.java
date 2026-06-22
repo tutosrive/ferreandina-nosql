@@ -10,6 +10,7 @@ public class Routes {
         CategoryController categoryController = new CategoryController();
         ProductController productController = new ProductController();
         SupplieController supplyController = new SupplieController();
+        SupplierController supplierController = new SupplierController();
         CustomerController customerController = new CustomerController();
         WorkerController workerController = new WorkerController();
 
@@ -30,6 +31,7 @@ public class Routes {
                 crud("/categories/{id}", categoryController);
                 crud("/products/{id}", productController);
                 crud("/supplies/{id}", supplyController);
+                crud("/suppliers/{id}", supplierController);
 
                 crud("/customers/{id}", customerController);
                 crud("/workers/{id}", workerController);
