@@ -1,16 +1,41 @@
 package com.ferreandina.routes;
 
+import com.ferreandina.controllers.*;
 import io.javalin.config.JavalinConfig;
+import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class Routes {
     public Routes(JavalinConfig config) {
-        new BranchRoute(config);
-        new CategoryRoute(config);
-        new CustomerRoute(config);
-        new PriceChangeRoute(config);
-        new ProductRoute(config);
-        new SupplierRoute(config);
-        new SupplieRoute(config);
-        new WorkerRoute(config);
+        BranchController branchController = new BranchController();
+        CategoryController categoryController = new CategoryController();
+        ProductController productController = new ProductController();
+        SupplieController supplyController = new SupplieController();
+        SupplierController supplierController = new SupplierController();
+        CustomerController customerController = new CustomerController();
+        WorkerController workerController = new WorkerController();
+
+        config.routes.apiBuilder(() -> {
+            path("/api", () -> {
+                get("/branches/low-stock", branchController::getLowStockProducts);
+                patch("/branches/clean-out-of-stock", branchController::cleanOutOfStock);
+                get("/branches/{id}/products", branchController::getBranchProducts);
+                patch("/branches/{id}/remove-product/{productId}", branchController::removeProductFromBranch);
+
+                // Products
+                get("/products/category/{categoryId}", productController::getProductsByCategory);
+
+                // Supplies
+                get("/supplies/defective-report", supplyController::getDefectiveReport);
+
+                crud("/branches/{id}", branchController);
+                crud("/categories/{id}", categoryController);
+                crud("/products/{id}", productController);
+                crud("/supplies/{id}", supplyController);
+                crud("/suppliers/{id}", supplierController);
+
+                crud("/customers/{id}", customerController);
+                crud("/workers/{id}", workerController);
+            });
+        });
     }
 }
