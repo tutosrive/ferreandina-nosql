@@ -12,42 +12,64 @@ export default function ProductsPage() {
   const location = useLocation();
 
   const filterIds = location.state?.filterIds as number[] | undefined;
+  const branchProducts = location.state?.branchProducts as any[] | undefined;
+  const branchName = location.state?.branchName as string | undefined;
 
   const getProducts = async () => {
     const res = await productService.get_all();
     let data = res.data || [];
 
-    if (location.state?.filterIds) {
-      const rawFilter = location.state.filterIds;
-
-      const idsToFilter = rawFilter
+    if (branchProducts) {
+      data = data
+        .filter((item: any) => {
+          const currentId = Number(item.id || item._id);
+          return branchProducts.some(
+            (bp: any) => Number(bp.id || bp._id) === currentId,
+          );
+        })
+        .map((item: any) => {
+          const currentId = Number(item.id || item._id);
+          const localProd = branchProducts.find(
+            (bp: any) => Number(bp.id || bp._id) === currentId,
+          );
+          return {
+            ...item,
+            quantity: localProd ? localProd.quantity : 0,
+            supplier_name: item.supplier ? item.supplier.name : "N/A",
+          };
+        });
+    } else if (filterIds) {
+      const idsToFilter = filterIds
         .map((item: any) => {
           if (typeof item === "number") return item;
           if (typeof item === "string") return parseInt(item, 10);
-          if (item && typeof item === "object") {
+          if (item && typeof item === "object")
             return Number(item.id || item._id);
-          }
           return NaN;
         })
         .filter((n: number) => !isNaN(n));
 
-      data = data.filter((item: any) => {
-        const currentId = Number(item.id || item._id);
-        return idsToFilter.includes(currentId);
-      });
+      data = data.filter((item: any) =>
+        idsToFilter.includes(Number(item.id || item._id)),
+      );
+
+      data = data.map((item: any) => ({
+        ...item,
+        supplier_name: item.supplier ? item.supplier.name : "N/A",
+      }));
+    } else {
+      data = data.map((item: any) => ({
+        ...item,
+        supplier_name: item.supplier ? item.supplier.name : "N/A",
+      }));
     }
 
-    const mappedData = data.map((item: any) => ({
-      ...item,
-      supplier_name: item.supplier ? item.supplier.name : "N/A",
-    }));
-
-    setProducts(mappedData);
+    setProducts(data);
   };
 
   useEffect(() => {
     getProducts();
-  }, [filterIds]);
+  }, [location.state]);
 
   const removeProduct = async (id: string | number) => {
     await productService.delete(Number(id));
@@ -71,11 +93,12 @@ export default function ProductsPage() {
       cellClick: (e: any, cell: any) => {
         const data = cell.getRow().getData();
         const target = e.target as HTMLElement;
+        const currentId = data.id || data._id;
 
         if (target.classList.contains("view-btn")) {
-          navigate(`/products/view/${data.id}`);
+          navigate(`/products/view/${currentId}`);
         } else if (target.classList.contains("edit-btn")) {
-          navigate(`/products/update/${data.id}`);
+          navigate(`/products/update/${currentId}`);
         } else if (target.classList.contains("delete-btn")) {
           Swal.fire({
             title: "Are you sure?",
@@ -86,12 +109,20 @@ export default function ProductsPage() {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
           }).then((result) => {
-            if (result.isConfirmed) removeProduct(data.id);
+            if (result.isConfirmed) removeProduct(currentId);
           });
         }
       },
     },
-    { title: "ID", field: "id", width: 70 },
+    {
+      title: "ID",
+      field: "id",
+      width: 70,
+      formatter: (cell: any) => {
+        const data = cell.getRow().getData();
+        return data.id || data._id || "";
+      },
+    },
     {
       title: "Image",
       field: "image",
@@ -108,7 +139,6 @@ export default function ProductsPage() {
     {
       title: "Price",
       field: "price",
-      // Tabulator ya tiene formateador de dinero por defecto
       formatter: "money",
       formatterParams: { symbol: "$", precision: 2 },
     },
@@ -129,14 +159,16 @@ export default function ProductsPage() {
         </button>
 
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Products</h1>
-          {filterIds && (
+          <h1 className="text-2xl font-bold">
+            {branchName ? `Products in ${branchName}` : "Products"}
+          </h1>
+          {(filterIds || branchProducts) && (
             <span className="text-sm text-yellow-500">(Filtered View)</span>
           )}
         </div>
 
         <div className="flex gap-2">
-          {filterIds && (
+          {(filterIds || branchProducts) && (
             <button
               onClick={() => navigate("/products", { state: {} })}
               className="p-ripple bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded"

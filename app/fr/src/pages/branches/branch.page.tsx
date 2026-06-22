@@ -43,11 +43,12 @@ export default function BranchesPage() {
       cellClick: (e: any, cell: any) => {
         const data = cell.getRow().getData();
         const target = e.target as HTMLElement;
+        const currentId = data.id || data._id;
 
         if (target.classList.contains("view-btn")) {
-          navigate(`/branches/view/${data.id}`);
+          navigate(`/branches/view/${currentId}`);
         } else if (target.classList.contains("edit-btn")) {
-          navigate(`/branches/update/${data.id}`);
+          navigate(`/branches/update/${currentId}`);
         } else if (target.classList.contains("delete-btn")) {
           Swal.fire({
             title: "Are you sure?",
@@ -59,13 +60,21 @@ export default function BranchesPage() {
             confirmButtonText: "Yes, delete it!",
           }).then((result) => {
             if (result.isConfirmed) {
-              removeBranch(data.id);
+              removeBranch(currentId);
             }
           });
         }
       },
     },
-    { title: "ID", field: "id", width: 70 },
+    {
+      title: "ID",
+      field: "id",
+      width: 70,
+      formatter: (cell: any) => {
+        const data = cell.getRow().getData();
+        return data.id || data._id || "";
+      },
+    },
     { title: "Name", field: "name" },
     { title: "City", field: "city" },
     { title: "Direction", field: "direction" },
@@ -77,10 +86,12 @@ export default function BranchesPage() {
     {
       title: "Products",
       field: "products",
+      hozAlign: "center",
+      width: 140,
       formatter: (cell: any) => {
-        const products = cell.getValue();
-        if (products && products.length > 0) {
-          return `<button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs products-btn">View ${products.length}</button>`;
+        const val = cell.getValue();
+        if (val && val.length > 0) {
+          return `<button class="bg-yellow-600 hover:bg-yellow-700 text-white px-2 py-1 rounded text-xs products-btn">Products: ${val.length}</button>`;
         }
         return '<span class="text-gray-400 italic text-xs">No Products</span>';
       },
@@ -88,7 +99,10 @@ export default function BranchesPage() {
         if ((e.target as HTMLElement).classList.contains("products-btn")) {
           const data = cell.getRow().getData();
           navigate("/products", {
-            state: { filterIds: data.products.map((p: any) => p.id) },
+            state: {
+              branchProducts: data.products,
+              branchName: data.name,
+            },
           });
         }
       },
@@ -107,7 +121,9 @@ export default function BranchesPage() {
         if ((e.target as HTMLElement).classList.contains("workers-btn")) {
           const data = cell.getRow().getData();
           navigate("/workers", {
-            state: { filterIds: data.workers.map((w: any) => w.id) },
+            state: {
+              filterIds: (data.workers || []).map((w: any) => w.id || w._id),
+            },
           });
         }
       },
