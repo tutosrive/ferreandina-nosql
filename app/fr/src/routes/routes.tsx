@@ -55,10 +55,14 @@ const ViewSupplierPage = lazy(
   () => import("../pages/suppliers/viewSupplier.page"),
 );
 
-// const WorkersPage = lazy(() => import("../pages/workers/worker.page"));
-// const CreateWorkerPage = lazy(() => import("../pages/workers/createWorker.page"));
-// const UpdateWorkerPage = lazy(() => import("../pages/workers/updateWorker.page"));
-// const ViewWorkerPage = lazy(() => import("../pages/workers/viewWorker.page"));
+const WorkersPage = lazy(() => import("../pages/workers/worker.page"));
+const CreateWorkerPage = lazy(
+  () => import("../pages/workers/createWorker.page"),
+);
+const UpdateWorkerPage = lazy(
+  () => import("../pages/workers/updateWorker.page"),
+);
+const ViewWorkerPage = lazy(() => import("../pages/workers/viewWorker.page"));
 
 const routers = [
   { path: "/", element: <HomePage />, title: "Inicio" },
@@ -148,10 +152,22 @@ const routers = [
     title: "View Supplier",
   },
 
-  // { path: "/workers", element: <WorkersPage />, title: "Workers" },
-  // { path: "/workers/create", element: <CreateWorkerPage />, title: "Create Worker" },
-  // { path: "/workers/update/:id", element: <UpdateWorkerPage />, title: "Update Worker" },
-  // { path: "/workers/view/:id", element: <ViewWorkerPage />, title: "View Worker" },
+  { path: "/workers", element: <WorkersPage />, title: "Workers" },
+  {
+    path: "/workers/create",
+    element: <CreateWorkerPage />,
+    title: "Create Worker",
+  },
+  {
+    path: "/workers/update/:id",
+    element: <UpdateWorkerPage />,
+    title: "Update Worker",
+  },
+  {
+    path: "/workers/view/:id",
+    element: <ViewWorkerPage />,
+    title: "View Worker",
+  },
 ];
 
 export default routers;

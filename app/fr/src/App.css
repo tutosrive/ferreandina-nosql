@@ -81,19 +81,18 @@
   line-height: 1.85;
   font-size: 1rem;
 }
-/* El contenedor principal que envuelve el texto y el logo */
+
 .hero {
   display: flex;
-  justify-content: space-between; /* Empuja el texto a la izq y el logo a la der */
-  align-items: center; /* Centra ambos verticalmente */
+  justify-content: space-between;
+  align-items: center;
   padding: 2rem;
 }
 
-/* El contenedor del logo */
 .hero-visual {
   display: flex;
-  justify-content: flex-end; /* Asegura que lo que contenga se alinee a la derecha */
-  width: 50%; /* Dale un ancho definido para que no ocupe todo el espacio */
+  justify-content: flex-end;
+  width: 50%;
 }
 
 .hero-visual img {
@@ -104,7 +103,7 @@
   border-radius: 28px;
   box-shadow: 0 30px 60px rgba(15, 23, 42, 0.22);
 }
-/* Contenedor principal de las tarjetas */
+
 .summary-grid {
   max-width: 1140px;
   margin: 0 auto;
@@ -151,19 +150,8 @@
   filter: saturate(1.05) brightness(0.96);
 }
 
-.summary-cardimage,
-.detail-section-image,
-.hero-visual img,
-.brand-logo {
-  /* max-width: 100%; */
-}
-
 .detail-section-image {
-  /* width: 100%; */
-  /* max-width: 420px;
-  max-height: 420px; */
   border-radius: 24px;
-  /* object-fit: cover; */
   box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
 }
 
@@ -174,8 +162,6 @@
 }
 
 .summary-cardicon {
-  /* width: 46px;
-  height: 46px; */
   display: grid;
   place-items: center;
   border-radius: 14px;
@@ -206,15 +192,11 @@
 }
 
 .detail-section-image {
-  /* width: 100%;
-  max-width: 420px; */
   border-radius: 24px;
-  /* object-fit: cover; */
   box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
 }
 
 .detail-page {
-  /* max-width: 1140px; */
   margin: 0 auto;
   display: grid;
   gap: 24px;
@@ -250,10 +232,7 @@
 }
 
 .detail-section-image {
-  /* width: 100%;
-  max-width: 420px; */
   border-radius: 28px;
-  /* object-fit: cover; */
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
 }
 
@@ -346,37 +325,6 @@
   opacity: 0.96;
 }
 
-/* .table-prime-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.table-prime-actions button {
-  border: none;
-  border-radius: 12px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.table-prime-actions button:first-child {
-  background: rgba(59, 130, 246, 0.16);
-  color: #f8fafc;
-}
-
-.table-prime-actions button:last-child {
-  background: rgba(248, 113, 113, 0.18);
-  color: #fee2e2;
-}
-
-.table-prime-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 16px;
-} */
-
 .toolbar-start,
 .toolbar-center,
 .toolbar-end {
@@ -384,50 +332,6 @@
   align-items: center;
   gap: 0.55rem;
 }
-
-/* .table-prime-header {
-  margin-bottom: 16px;
-  color: #e2e8f0;
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-.table-prime-scroll {
-  width: 100%;
-  overflow-x: auto;
-  border-radius: 24px;
-}
-
-.table-prime {
-  width: 100%;
-  min-width: 720px;
-  border-collapse: collapse;
-}
-
-.table-prime th,
-.table-prime td {
-  padding: 16px 18px;
-  text-align: left;
-  color: #dbeafe;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-}
-
-.table-prime th {
-  background: rgba(15, 23, 42, 0.94);
-  color: #bfdbfe;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.table-prime tbody tr:hover {
-  background: rgba(56, 189, 248, 0.08);
-}
-
-.table-prime-empty {
-  padding: 22px 18px;
-  text-align: center;
-  color: #94a3b8;
-} */
 
 @media (max-width: 980px) {
   .hero {

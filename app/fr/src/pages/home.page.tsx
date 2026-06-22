@@ -106,12 +106,11 @@ export default function HomePage() {
     <>
       <section className="hero">
         <div>
-          <span className="eyebrow">Gestión Central</span>
-          <h1>Sistema de Administración</h1>
+          <span className="eyebrow">Central Management</span>
+          <h1>Administration System</h1>
           <p>
-            Controla y gestiona sucursales, clientes, productos, proveedores y
-            el equipo de trabajo en un solo lugar. Todo centralizado, moderno y
-            claro.
+            Control and manage branches, customers, products, suppliers and the
+            team in one place. Everything centralised, modern and clear.
           </p>
         </div>
         <div className="hero-visual">
