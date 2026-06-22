@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import workerService from "../../services/worker.service";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LoaderPointsComponent from "../../components/LoaderPoints.component";
 import TableTabulatorComponent from "../../components/TableTabulator.component";
 import { Ripple } from "primereact/ripple";
@@ -10,17 +10,42 @@ export default function WorkersPage() {
   const [workers, setWorkers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const filterIds = location.state?.filterIds as number[] | undefined;
 
   const getWorkers = async () => {
     setIsLoading(true);
     const res = await workerService.get_all();
-    setWorkers(res.data || []);
+    let data = res.data || [];
+
+    if (location.state?.filterIds) {
+      const rawFilter = location.state.filterIds;
+
+      const idsToFilter = rawFilter
+        .map((item: any) => {
+          if (typeof item === "number") return item;
+          if (typeof item === "string") return parseInt(item, 10);
+          if (item && typeof item === "object") {
+            return Number(item.id || item._id);
+          }
+          return NaN;
+        })
+        .filter((n: number) => !isNaN(n));
+
+      data = data.filter((item: any) => {
+        const currentId = Number(item.id || item._id);
+        return idsToFilter.includes(currentId);
+      });
+    }
+
+    setWorkers(data);
     setIsLoading(false);
   };
 
   useEffect(() => {
     getWorkers();
-  }, []);
+  }, [location.state?.filterIds]);
 
   const removeWorker = async (id: string | number) => {
     await workerService.delete(Number(id));
@@ -119,15 +144,31 @@ export default function WorkersPage() {
           <Ripple />
         </button>
 
-        <h1 className="text-2xl font-bold">Workers</h1>
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">Workers</h1>
+          {filterIds && (
+            <span className="text-sm text-yellow-500">(Filtered View)</span>
+          )}
+        </div>
 
-        <button
-          onClick={() => navigate("/workers/create")}
-          className="p-ripple orange-ripple bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-        >
-          Create New
-          <Ripple />
-        </button>
+        <div className="flex gap-2">
+          {filterIds && (
+            <button
+              onClick={() => navigate("/workers", { state: {} })}
+              className="p-ripple bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded"
+            >
+              Clear Filter
+              <Ripple />
+            </button>
+          )}
+          <button
+            onClick={() => navigate("/workers/create")}
+            className="p-ripple orange-ripple bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          >
+            Create New
+            <Ripple />
+          </button>
+        </div>
       </div>
 
       <div className="flex justify-center w-full px-4">

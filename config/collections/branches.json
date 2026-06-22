@@ -12,22 +12,22 @@
         "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/hammer.webp"
       },
       {
-        "_id": 2,
+        "_id": 3,
         "name": "power_drill",
         "quantity": 4500,
-        "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/hammer.webp"
+        "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQabipjJj6zlLRVhlf8dq6SNxXqeyfGTFRu20wY_kaSZfhmzl1CzisyBZNKrUUW"
       },
       {
-        "_id": 10,
+        "_id": 4,
         "name": "drywall_screws",
         "quantity": 6500,
-        "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/hammer.webp"
+        "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQi8_UnoQjJPtKL3J0IGaWxtNTU9WCyoesNjaAf-Q4dbkwD1TCh7HKVUDvH2JL5"
       },
       {
-        "_id": 6,
+        "_id": 5,
         "name": "copper_wire_12awg",
         "quantity": 2300,
-        "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/hammer.webp"
+        "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRSeOJ-CxlNs5ztlkT-_cOfG3Rpwu56JL_hR8Us67qji9uweafOVFqeaRCowpEU"
       }
     ],
     "workers": [

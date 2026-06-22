@@ -11,7 +11,7 @@ export default function UpdateProductPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       if (id) {
-        const res = await productService.get_product_by_id(id);
+        const res = await productService.get_by_id(id);
         setProduct(res.data);
       }
     };
