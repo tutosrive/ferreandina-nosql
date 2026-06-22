@@ -10,5 +10,41 @@
     "sould_out_date": null,
     "supplier": { "_id": 1, "name": "Fierros La Central" },
     "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/hammer.webp"
+  },
+  {
+    "_id": 2,
+    "name": "power_drill",
+    "description": "High-performance electric power drill featuring a variable speed trigger, reversible motor, and adjustable torque settings for precise drilling and fastening tasks.",
+    "price": 59.99,
+    "category_id": 10,
+    "quantity": 4500,
+    "unitary_weight": 1.8,
+    "sould_out_date": null,
+    "supplier": { "_id": 1, "name": "Fierros La Central" },
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/power_drill.webp"
+  },
+  {
+    "_id": 10,
+    "name": "drywall_screws",
+    "description": "Premium bugle head drywall screws with a sharp point and fine thread, engineered for securely fastening gypsum boards to wood or light-gauge metal studs.",
+    "price": 0.05,
+    "category_id": 18,
+    "quantity": 6500,
+    "unitary_weight": 0.003,
+    "sould_out_date": null,
+    "supplier": { "_id": 1, "name": "Fierros La Central" },
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/drywall_screws.webp"
+  },
+  {
+    "_id": 6,
+    "name": "copper_wire_12awg",
+    "description": "High-conductivity 12 AWG copper wire insulated with a durable flame-retardant jacket, ideal for reliable residential and commercial electrical wiring up to 20 Amps.",
+    "price": 0.85,
+    "category_id": 5,
+    "quantity": 2300,
+    "unitary_weight": 0.038,
+    "sould_out_date": null,
+    "supplier": { "_id": 1, "name": "Fierros La Central" },
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/products/copper_wire_12awg.webp"
   }
 ]

@@ -66,6 +66,19 @@ export default function CategoriesPage() {
       },
     },
     { title: "ID", field: "id", width: 80 },
+    {
+      title: "Image",
+      field: "image",
+      hozAlign: "center",
+      headerSort: false,
+      width: 90,
+      formatter: (cell: any) => {
+        const value = cell.getValue();
+        return value
+          ? `<img src="${value}" alt="Category" class="w-10 h-10 object-cover rounded border border-gray-700 shadow-sm mx-auto" />`
+          : `<span class="text-gray-400 italic text-xs">No image</span>`;
+      },
+    },
     { title: "Name", field: "name", width: 250 },
     { title: "Description", field: "description", formatter: "textarea" },
   ];
