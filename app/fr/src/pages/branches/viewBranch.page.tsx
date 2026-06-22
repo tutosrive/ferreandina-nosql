@@ -11,7 +11,7 @@ export default function ViewBranchPage() {
   useEffect(() => {
     const fetchBranch = async () => {
       if (id) {
-        const res = await branchService.get_branch_by_id(id);
+        const res = await branchService.get_by_id(id);
         setBranch(res.data);
       }
     };

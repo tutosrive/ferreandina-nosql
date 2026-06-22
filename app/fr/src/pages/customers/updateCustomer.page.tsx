@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import customerService from "../../services/customer.service";
 import CustomerFormComponent from "../../components/customers/customerForm.component";
@@ -10,8 +10,10 @@ export default function UpdateCustomerPage() {
 
   useEffect(() => {
     const fetchCustomer = async () => {
-      const res = await customerService.get_customer_by_id(id);
-      setCustomer(res.data);
+      if (id) {
+        const res = await customerService.get_by_id(id);
+        setCustomer(res.data);
+      }
     };
     fetchCustomer();
   }, [id]);
@@ -19,8 +21,10 @@ export default function UpdateCustomerPage() {
   if (!customer) return <LoaderPointsComponent />;
 
   return (
-    <div>
-      <h2 className="text-xl font-bold text-center mb-6">Update Customer</h2>
+    <div className="pb-10">
+      <h2 className="text-xl font-bold text-center mb-6">
+        Update Customer Details
+      </h2>
       <CustomerFormComponent initialData={customer} isEdit={true} />
     </div>
   );

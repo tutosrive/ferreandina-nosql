@@ -14,7 +14,7 @@ export default function ProductsPage() {
   const filterIds = location.state?.filterIds as number[] | undefined;
 
   const getProducts = async () => {
-    const res = await productService.get_all_products();
+    const res = await productService.get_all();
     let data = res.data || [];
 
     if (location.state?.filterIds) {
@@ -30,8 +30,6 @@ export default function ProductsPage() {
           return NaN;
         })
         .filter((n: number) => !isNaN(n));
-
-      console.log("IDs limpios y listos para filtrar:", idsToFilter);
 
       data = data.filter((item: any) => {
         const currentId = Number(item.id || item._id);
@@ -52,7 +50,7 @@ export default function ProductsPage() {
   }, [filterIds]);
 
   const removeProduct = async (id: string | number) => {
-    await productService.delete_product(Number(id));
+    await productService.delete(Number(id));
     await getProducts();
   };
 

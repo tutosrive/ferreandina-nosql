@@ -3,5 +3,6 @@ export default interface Supplier {
   name?: string;
   email?: string;
   phone?: string;
+  direction?: string;
   image?: string;
 }

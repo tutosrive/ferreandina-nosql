@@ -1,11 +1,15 @@
 import api from "./axios.config";
 import type ReturningService from "../models/ReturningService.model";
-import type Product from "../models/Product.model";
 
-class ProductService {
-  async get_all_products(): Promise<ReturningService> {
+export default class Service<T> {
+  endpoint: string;
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
+
+  async get_all(): Promise<ReturningService> {
     try {
-      const response = await api.get("/products");
+      const response = await api.get(`/${this.endpoint}`);
       return {
         status: response.status,
         data: response.data.data,
@@ -16,15 +20,10 @@ class ProductService {
     }
   }
 
-  async get_product_by_id(id: string | number): Promise<ReturningService> {
+  async get_by_id(id: string | number): Promise<ReturningService> {
     try {
-      const response = await api.get(`/products/${id}`);
-      // const data = Array.isArray(response.data.data)
-      //   ? response.data.data[0]
-      //   : response.data.data;
+      const response = await api.get(`/${this.endpoint}/${id}`);
       const data = response.data.data[0];
-      console.log(response);
-      console.log(data);
 
       return { status: response.status, data: data, error: false };
     } catch (error: any) {
@@ -32,9 +31,9 @@ class ProductService {
     }
   }
 
-  async post_product(product: Product): Promise<ReturningService> {
+  async post(document: T): Promise<ReturningService> {
     try {
-      const response = await api.post("/products", product);
+      const response = await api.post(`${this.endpoint}`, document);
       return {
         status: response.status,
         data: response.data.data,
@@ -45,21 +44,18 @@ class ProductService {
     }
   }
 
-  async update_product(
-    id: string | number,
-    product: Product,
-  ): Promise<ReturningService> {
+  async update(id: string | number, document: T): Promise<ReturningService> {
     try {
-      const response = await api.patch(`/products/${id}`, product);
+      const response = await api.patch(`/${this.endpoint}/${id}`, document);
       return { status: response.status, data: response.data, error: false };
     } catch (error: any) {
       return { status: error.response?.status || 500, data: null, error: true };
     }
   }
 
-  async delete_product(id: string | number): Promise<ReturningService> {
+  async delete(id: string | number): Promise<ReturningService> {
     try {
-      const response = await api.delete(`/products/${id}`);
+      const response = await api.delete(`/${this.endpoint}/${id}`);
       return { status: response.status, data: response.data, error: false };
     } catch (error: any) {
       return { status: error.response?.status || 500, data: null, error: true };
@@ -67,5 +63,5 @@ class ProductService {
   }
 }
 
-const productService = new ProductService();
-export default productService;
+// const productService = new Service();
+// export default productService;

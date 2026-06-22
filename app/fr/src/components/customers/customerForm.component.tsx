@@ -20,12 +20,12 @@ export default function CustomerFormComponent({
 }: CustomerFormProps) {
   const navigate = useNavigate();
 
-  const initialValues = initialData || {
-    id: "",
-    alias: "",
-    ni: "",
-    category: "",
-    phone: "",
+  const initialValues = {
+    id: initialData?.id || (initialData as any)?._id || "",
+    alias: initialData?.alias || "",
+    ni: initialData?.ni || "",
+    category: initialData?.category || "",
+    phone: initialData?.phone || "",
   };
 
   const [formValues, setFormValues] = useState(initialValues);
@@ -39,34 +39,34 @@ export default function CustomerFormComponent({
     ni: Yup.string().required("Required NI"),
     category: Yup.string().required("Required Category"),
     phone: Yup.string()
-      .matches(/^[0-9]+$/, "Only numbers")
-      .min(7, "Minimum 7 digits")
-      .max(15, "Maximum 15 digits")
+      .matches(/^[0-9]+$/, "Must be only numbers")
       .required("Required Phone"),
   });
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: typeof initialValues) => {
     if (isView) return;
 
-    const payload = { ...values, id: Number(values.id) };
+    const payload: Customer = {
+      id: Number(values.id),
+      alias: values.alias,
+      ni: values.ni,
+      category: values.category,
+      phone: values.phone,
+    };
 
     const response = isEdit
-      ? await customerService.update_customer(payload.id, payload)
-      : await customerService.post_customer(payload);
+      ? await customerService.update(payload.id as number, payload)
+      : await customerService.post(payload);
 
     if (response.status === 200 || response.status === 201) {
       Swal.fire({
         title: "Success",
-        text: `Customer ${isEdit ? "updated" : "created"} successfully`,
+        text: `Customer successfully ${isEdit ? "updated" : "created"}`,
         icon: "success",
       });
       navigate("/customers");
     } else {
-      Swal.fire({
-        title: "Error",
-        text: "Failed to process customer",
-        icon: "error",
-      });
+      Swal.fire("Error", "Failed to process customer", "error");
     }
   };
 
@@ -82,42 +82,56 @@ export default function CustomerFormComponent({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
-
-    if (name === "phone" || name === "id") {
+    if (["id", "phone"].includes(name)) {
       value = value.replace(/\D/g, "");
     }
-
     setFormValues((prev) => ({ ...prev, [name]: value }));
     formik.setFieldValue(name, value);
   };
 
-  const fields = ["id", "alias", "ni", "category", "phone"];
+  const fields = [
+    { name: "id", type: "text", label: "ID" },
+    { name: "alias", type: "text", label: "ALIAS" },
+    { name: "ni", type: "text", label: "NI (Document/Tax ID)" },
+    { name: "category", type: "text", label: "CATEGORY" },
+    { name: "phone", type: "text", label: "PHONE" },
+  ];
 
   return (
     <div className="max-w-lg mx-auto mt-10 p-4">
       <form onSubmit={formik.handleSubmit} className="space-y-4">
-        {fields.map((field: string) => {
-          const isDisabled = isView || (isEdit && field === "id");
+        {fields.map((field) => {
+          const isDisabled = isView || (isEdit && field.name === "id");
 
           return (
-            <div key={field}>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {field.toUpperCase()}
+            <div key={field.name}>
+              <label className="block text-sm font-medium text-gray-500 mb-1">
+                {field.label}
               </label>
               <input
-                type="text"
-                name={field}
-                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                value={formik.values[field as keyof typeof formik.values] || ""}
+                type={field.type}
+                name={field.name}
+                placeholder={field.label}
+                value={
+                  formik.values[field.name as keyof typeof formik.values] || ""
+                }
                 onChange={handleChange}
                 disabled={isDisabled}
-                className={`w-full border px-3 py-2 rounded text-gray-700 ${isDisabled ? "bg-gray-100 cursor-not-allowed font-semibold" : ""}`}
+                className={`w-full border px-3 py-2 rounded text-black placeholder-gray-300 ${
+                  isDisabled
+                    ? "bg-gray-200 cursor-not-allowed font-semibold"
+                    : "bg-white"
+                }`}
               />
               {!isDisabled &&
-                formik.touched[field as keyof typeof formik.touched] &&
-                formik.errors[field as keyof typeof formik.errors] && (
+                formik.touched[field.name as keyof typeof formik.touched] &&
+                formik.errors[field.name as keyof typeof formik.errors] && (
                   <div className="text-red-500 text-sm mt-1">
-                    {formik.errors[field as keyof typeof formik.errors]}
+                    {
+                      formik.errors[
+                        field.name as keyof typeof formik.errors
+                      ] as string
+                    }
                   </div>
                 )}
             </div>
@@ -128,7 +142,7 @@ export default function CustomerFormComponent({
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="p-ripple orange-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded w-full sm:w-auto"
+            className="p-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded w-full sm:w-auto"
           >
             Back
             <Ripple />
@@ -137,9 +151,9 @@ export default function CustomerFormComponent({
           {!isView && (
             <button
               type="submit"
-              className="p-ripple orange-ripple bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full sm:w-auto"
+              className="p-ripple bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full sm:w-auto"
             >
-              {isEdit ? "Update" : "Create"}
+              {isEdit ? "Update Customer" : "Create Customer"}
               <Ripple />
             </button>
           )}

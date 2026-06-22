@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { TabulatorFull as Tabulator } from "tabulator-tables";
-import "tabulator-tables/dist/css/tabulator.min.css";
+import React from "react";
+import "react-tabulator/lib/styles.css";
+import "react-tabulator/lib/css/tabulator.min.css";
+import { ReactTabulator } from "react-tabulator";
 
 interface TableTabulatorProps {
   data: any[];
@@ -11,35 +12,21 @@ export default function TableTabulatorComponent({
   data,
   columns,
 }: TableTabulatorProps) {
-  const tableRef = useRef<HTMLDivElement>(null);
-  const tabulatorRef = useRef<Tabulator | null>(null);
+  
+  const options = {
+    layout: "fitColumns",
+    pagination: true,
+    paginationSize: 10,
+    paginationSizeSelector: [5, 10, 25, 50],
+  };
 
-  useEffect(() => {
-    if (tableRef.current && !tabulatorRef.current) {
-      tabulatorRef.current = new Tabulator(tableRef.current, {
-        data: data,
-        reactiveData: true,
-        columns: columns,
-        layout: "fitColumns",
-        pagination: true,
-        paginationSize: 10,
-        paginationSizeSelector: [5, 10, 25, 50],
-      });
-    }
-
-    return () => {
-      if (tabulatorRef.current) {
-        tabulatorRef.current.destroy();
-        tabulatorRef.current = null;
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (tabulatorRef.current && data) {
-      tabulatorRef.current.replaceData(data);
-    }
-  }, [data]);
-
-  return <div ref={tableRef} className="w-full border rounded shadow-sm"></div>;
+  return (
+    <div className="w-full border rounded shadow-sm">
+      <ReactTabulator
+        data={data}
+        columns={columns}
+        options={options}
+      />
+    </div>
+  );
 }

@@ -11,7 +11,7 @@ export default function BranchesPage() {
   const navigate = useNavigate();
 
   const getBranches = async () => {
-    const res = await branchService.get_all_branches();
+    const res = await branchService.get_all();
     setBranches(res.data || []);
   };
 
@@ -20,7 +20,7 @@ export default function BranchesPage() {
   }, []);
 
   const removeBranch = async (id: string | number) => {
-    await branchService.delete_branch(Number(id));
+    await branchService.delete(Number(id));
     await getBranches();
   };
 

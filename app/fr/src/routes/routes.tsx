@@ -22,10 +22,16 @@ const UpdateBranchPage = lazy(
 );
 const ViewBranchPage = lazy(() => import("../pages/branches/viewBranch.page"));
 
-// const CategoriesPage = lazy(() => import("../pages/categories/category.page"));
-// const CreateCategoryPage = lazy(() => import("../pages/categories/createCategory.page"));
-// const UpdateCategoryPage = lazy(() => import("../pages/categories/updateCategory.page"));
-// const ViewCategoryPage = lazy(() => import("../pages/categories/viewCategory.page"));
+const CategoriesPage = lazy(() => import("../pages/categories/category.page"));
+const CreateCategoryPage = lazy(
+  () => import("../pages/categories/createCategory.page"),
+);
+const UpdateCategoryPage = lazy(
+  () => import("../pages/categories/updateCategory.page"),
+);
+const ViewCategoryPage = lazy(
+  () => import("../pages/categories/viewCategory.page"),
+);
 
 const ProductsPage = lazy(() => import("../pages/products/product.page"));
 const CreateProductPage = lazy(
@@ -38,10 +44,16 @@ const ViewProductPage = lazy(
   () => import("../pages/products/viewProduct.page"),
 );
 
-// const SuppliersPage = lazy(() => import("../pages/suppliers/supplier.page"));
-// const CreateSupplierPage = lazy(() => import("../pages/suppliers/createSupplier.page"));
-// const UpdateSupplierPage = lazy(() => import("../pages/suppliers/updateSupplier.page"));
-// const ViewSupplierPage = lazy(() => import("../pages/suppliers/viewSupplier.page"));
+const SuppliersPage = lazy(() => import("../pages/suppliers/supplier.page"));
+const CreateSupplierPage = lazy(
+  () => import("../pages/suppliers/createSupplier.page"),
+);
+const UpdateSupplierPage = lazy(
+  () => import("../pages/suppliers/updateSupplier.page"),
+);
+const ViewSupplierPage = lazy(
+  () => import("../pages/suppliers/viewSupplier.page"),
+);
 
 // const WorkersPage = lazy(() => import("../pages/workers/worker.page"));
 // const CreateWorkerPage = lazy(() => import("../pages/workers/createWorker.page"));
@@ -85,10 +97,22 @@ const routers = [
     title: "View Branch",
   },
 
-  // { path: "/categories", element: <CategoriesPage />, title: "Categories" },
-  // { path: "/categories/create", element: <CreateCategoryPage />, title: "Create Category" },
-  // { path: "/categories/update/:id", element: <UpdateCategoryPage />, title: "Update Category" },
-  // { path: "/categories/view/:id", element: <ViewCategoryPage />, title: "View Category" },
+  { path: "/categories", element: <CategoriesPage />, title: "Categories" },
+  {
+    path: "/categories/create",
+    element: <CreateCategoryPage />,
+    title: "Create Category",
+  },
+  {
+    path: "/categories/update/:id",
+    element: <UpdateCategoryPage />,
+    title: "Update Category",
+  },
+  {
+    path: "/categories/view/:id",
+    element: <ViewCategoryPage />,
+    title: "View Category",
+  },
 
   { path: "/products", element: <ProductsPage />, title: "Products" },
   {
@@ -107,10 +131,22 @@ const routers = [
     title: "View Product",
   },
 
-  // { path: "/suppliers", element: <SuppliersPage />, title: "Suppliers" },
-  // { path: "/suppliers/create", element: <CreateSupplierPage />, title: "Create Supplier" },
-  // { path: "/suppliers/update/:id", element: <UpdateSupplierPage />, title: "Update Supplier" },
-  // { path: "/suppliers/view/:id", element: <ViewSupplierPage />, title: "View Supplier" },
+  { path: "/suppliers", element: <SuppliersPage />, title: "Suppliers" },
+  {
+    path: "/suppliers/create",
+    element: <CreateSupplierPage />,
+    title: "Create Supplier",
+  },
+  {
+    path: "/suppliers/update/:id",
+    element: <UpdateSupplierPage />,
+    title: "Update Supplier",
+  },
+  {
+    path: "/suppliers/view/:id",
+    element: <ViewSupplierPage />,
+    title: "View Supplier",
+  },
 
   // { path: "/workers", element: <WorkersPage />, title: "Workers" },
   // { path: "/workers/create", element: <CreateWorkerPage />, title: "Create Worker" },

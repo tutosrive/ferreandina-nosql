@@ -1,7 +1,3 @@
-img {
-  width: 100px;
-}
-
 .app-shell {
   min-height: 100vh;
   padding: 32px 24px 48px;
@@ -85,11 +81,19 @@ img {
   line-height: 1.85;
   font-size: 1rem;
 }
+/* El contenedor principal que envuelve el texto y el logo */
+.hero {
+  display: flex;
+  justify-content: space-between; /* Empuja el texto a la izq y el logo a la der */
+  align-items: center; /* Centra ambos verticalmente */
+  padding: 2rem;
+}
 
-.hero-visual img {
-  width: 100px;
-  max-width: 100%;
-  height: auto;
+/* El contenedor del logo */
+.hero-visual {
+  display: flex;
+  justify-content: flex-end; /* Asegura que lo que contenga se alinee a la derecha */
+  width: 50%; /* Dale un ancho definido para que no ocupe todo el espacio */
 }
 
 .hero-visual img {
@@ -131,24 +135,23 @@ img {
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
 }
 
-.summary-card__preview {
-  /* width: 100%; */
-  height: 80px;
+.summary-cardpreview {
+  width: 100%;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #0b1120;
 }
 
-.summary-card__image {
-  /* width: 100%;
-  height: 100%; */
-  /* object-fit: contain;
-  object-position: center; */
-  /* display: block; */
+.summary-cardimage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
   filter: saturate(1.05) brightness(0.96);
-  /* max-height: 80px; */
 }
 
-.summary-card__image,
+.summary-cardimage,
 .detail-section-image,
 .hero-visual img,
 .brand-logo {
@@ -164,13 +167,13 @@ img {
   box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
 }
 
-.summary-card__content {
+.summary-cardcontent {
   padding: 18px 18px 20px;
   display: grid;
   gap: 10px;
 }
 
-.summary-card__icon {
+.summary-cardicon {
   /* width: 46px;
   height: 46px; */
   display: grid;
@@ -181,7 +184,7 @@ img {
   font-size: 1.25rem;
 }
 
-.summary-card__label {
+.summary-cardlabel {
   margin: 0;
   color: #cbd5e1;
   font-size: 0.9rem;
@@ -190,13 +193,13 @@ img {
   text-transform: uppercase;
 }
 
-.summary-card__count {
+.summary-cardcount {
   margin: 0;
   font-size: 2.1rem;
   color: #f2b705;
 }
 
-.summary-card__hint {
+.summary-cardhint {
   margin: 0;
   color: #94a3b8;
   line-height: 1.6;
@@ -455,7 +458,7 @@ img {
     padding: 20px 14px 32px;
   }
 
-  .summary-grid {
+  .summary-g {
     grid-template-columns: 1fr;
   }
 
