@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
-import customerService from "../../services/customer.service";
+import supplierService from "../../services/supplier.service";
 import { useNavigate } from "react-router-dom";
 import LoaderPointsComponent from "../../components/LoaderPoints.component";
 import TableTabulatorComponent from "../../components/TableTabulator.component";
 import { Ripple } from "primereact/ripple";
 import Swal from "sweetalert2";
 
-export default function CustomersPage() {
-  const [customers, setCustomers] = useState([]);
+export default function SuppliersPage() {
+  const [suppliers, setSuppliers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  const getCustomers = async () => {
+  const getSuppliers = async () => {
     setIsLoading(true);
-    const res = await customerService.get_all();
-    setCustomers(res.data || []);
+    const res = await supplierService.get_all();
+    setSuppliers(res.data || []);
     setIsLoading(false);
   };
 
   useEffect(() => {
-    getCustomers();
+    getSuppliers();
   }, []);
 
-  const removeCustomer = async (id: string | number) => {
-    await customerService.delete(Number(id));
-    await getCustomers();
+  const removeSupplier = async (id: string | number) => {
+    await supplierService.delete(Number(id));
+    await getSuppliers();
   };
 
   const columns = [
@@ -44,12 +44,12 @@ export default function CustomersPage() {
       cellClick: (e: any, cell: any) => {
         const data = cell.getRow().getData();
         const target = e.target as HTMLElement;
-        const currentId = data.id || data._id; // Blindaje del ID
+        const currentId = data._id || data.id;
 
         if (target.classList.contains("view-btn")) {
-          navigate(`/customers/view/${currentId}`);
+          navigate(`/suppliers/view/${currentId}`);
         } else if (target.classList.contains("edit-btn")) {
-          navigate(`/customers/update/${currentId}`);
+          navigate(`/suppliers/update/${currentId}`);
         } else if (target.classList.contains("delete-btn")) {
           Swal.fire({
             title: "Are you sure?",
@@ -60,16 +60,37 @@ export default function CustomersPage() {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
           }).then((result) => {
-            if (result.isConfirmed) removeCustomer(currentId);
+            if (result.isConfirmed) removeSupplier(currentId);
           });
         }
       },
     },
-    { title: "ID", field: "id", width: 80 },
-    { title: "Alias", field: "alias" },
-    { title: "NI", field: "ni" },
-    { title: "Category", field: "category" },
-    { title: "Phone", field: "phone" },
+    {
+      title: "ID",
+      field: "id",
+      width: 70,
+      hozAlign: "center",
+      formatter: (cell: any) => {
+        const data = cell.getRow().getData();
+        return data._id || data.id || "";
+      },
+    },
+    {
+      title: "Image",
+      field: "image",
+      hozAlign: "center",
+      headerSort: false,
+      width: 90,
+      formatter: (cell: any) => {
+        const value = cell.getValue();
+        return value
+          ? `<img src="${value}" alt="Supplier" class="w-10 h-10 object-cover rounded border shadow-sm mx-auto" />`
+          : `<span class="text-gray-400 italic text-xs">No image</span>`;
+      },
+    },
+    { title: "Name", field: "name", width: 220 },
+    { title: "Phone", field: "phone", width: 140 },
+    { title: "Email", field: "email" },
   ];
 
   return (
@@ -77,17 +98,17 @@ export default function CustomersPage() {
       <div className="flex justify-between items-center mb-6 px-4">
         <button
           onClick={() => navigate("/")}
-          className="p-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+          className="p-ripple orange-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
         >
           Back
           <Ripple />
         </button>
 
-        <h1 className="text-2xl font-bold">Customers</h1>
+        <h1 className="text-2xl font-bold">Suppliers</h1>
 
         <button
-          onClick={() => navigate("/customers/create")}
-          className="p-ripple bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          onClick={() => navigate("/suppliers/create")}
+          className="p-ripple orange-ripple bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
         >
           Create New
           <Ripple />
@@ -101,7 +122,7 @@ export default function CustomersPage() {
           </div>
         ) : (
           <div className="w-full">
-            <TableTabulatorComponent data={customers} columns={columns} />
+            <TableTabulatorComponent data={suppliers} columns={columns} />
           </div>
         )}
       </div>

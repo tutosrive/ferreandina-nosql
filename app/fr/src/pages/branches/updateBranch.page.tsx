@@ -18,10 +18,10 @@ export default function UpdateBranchPage() {
 
   const fetchData = async () => {
     if (id) {
-      const resBranch = await branchService.get_branch_by_id(id);
+      const resBranch = await branchService.get_by_id(id);
       setBranch(resBranch.data);
     }
-    const resProds = await productService.get_all_products();
+    const resProds = await productService.get_all();
     setAllProducts(resProds.data || []);
   };
 
@@ -90,7 +90,7 @@ export default function UpdateBranchPage() {
 
     setBranch(payload);
 
-    const response = await branchService.update_branch(
+    const response = await branchService.update(
       branch.id || branch._id,
       payload,
     );

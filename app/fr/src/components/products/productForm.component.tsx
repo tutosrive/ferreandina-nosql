@@ -8,7 +8,7 @@ import { Ripple } from "primereact/ripple";
 import type Product from "../../models/Product.model";
 
 interface ProductFormProps {
-  initialData?: any | null; // Usamos 'any' temporalmente aquí para atrapar variaciones del backend
+  initialData?: any | null;
   isEdit?: boolean;
   isView?: boolean;
 }
@@ -20,7 +20,6 @@ export default function ProductFormComponent({
 }: ProductFormProps) {
   const navigate = useNavigate();
 
-  // Mapeo a prueba de balas: revisa snake_case, camelCase y objetos anidados
   const initialValues = {
     id: initialData?.id || initialData?._id || "",
     name: initialData?.name || "",
@@ -93,8 +92,8 @@ export default function ProductFormComponent({
     };
 
     const response = isEdit
-      ? await productService.update_product(payload.id as number, payload)
-      : await productService.post_product(payload);
+      ? await productService.update(payload.id as number, payload)
+      : await productService.post(payload);
 
     if (response.status === 200 || response.status === 201) {
       Swal.fire({

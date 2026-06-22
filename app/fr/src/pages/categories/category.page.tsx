@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
-import customerService from "../../services/customer.service";
+import categoryService from "../../services/category.service";
 import { useNavigate } from "react-router-dom";
 import LoaderPointsComponent from "../../components/LoaderPoints.component";
 import TableTabulatorComponent from "../../components/TableTabulator.component";
 import { Ripple } from "primereact/ripple";
 import Swal from "sweetalert2";
 
-export default function CustomersPage() {
-  const [customers, setCustomers] = useState([]);
+export default function CategoriesPage() {
+  const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  const getCustomers = async () => {
+  const getCategories = async () => {
     setIsLoading(true);
-    const res = await customerService.get_all();
-    setCustomers(res.data || []);
+    const res = await categoryService.get_all();
+    setCategories(res.data || []);
     setIsLoading(false);
   };
 
   useEffect(() => {
-    getCustomers();
+    getCategories();
   }, []);
 
-  const removeCustomer = async (id: string | number) => {
-    await customerService.delete(Number(id));
-    await getCustomers();
+  const removeCategory = async (id: string | number) => {
+    await categoryService.delete(Number(id));
+    await getCategories();
   };
 
   const columns = [
@@ -44,32 +44,30 @@ export default function CustomersPage() {
       cellClick: (e: any, cell: any) => {
         const data = cell.getRow().getData();
         const target = e.target as HTMLElement;
-        const currentId = data.id || data._id; // Blindaje del ID
+        const currentId = data.id || data._id;
 
         if (target.classList.contains("view-btn")) {
-          navigate(`/customers/view/${currentId}`);
+          navigate(`/categories/view/${currentId}`);
         } else if (target.classList.contains("edit-btn")) {
-          navigate(`/customers/update/${currentId}`);
+          navigate(`/categories/update/${currentId}`);
         } else if (target.classList.contains("delete-btn")) {
           Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "All products linked to this category might be affected!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
           }).then((result) => {
-            if (result.isConfirmed) removeCustomer(currentId);
+            if (result.isConfirmed) removeCategory(currentId);
           });
         }
       },
     },
     { title: "ID", field: "id", width: 80 },
-    { title: "Alias", field: "alias" },
-    { title: "NI", field: "ni" },
-    { title: "Category", field: "category" },
-    { title: "Phone", field: "phone" },
+    { title: "Name", field: "name", width: 250 },
+    { title: "Description", field: "description", formatter: "textarea" },
   ];
 
   return (
@@ -77,17 +75,17 @@ export default function CustomersPage() {
       <div className="flex justify-between items-center mb-6 px-4">
         <button
           onClick={() => navigate("/")}
-          className="p-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+          className="p-ripple orange-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
         >
           Back
           <Ripple />
         </button>
 
-        <h1 className="text-2xl font-bold">Customers</h1>
+        <h1 className="text-2xl font-bold">Categories</h1>
 
         <button
-          onClick={() => navigate("/customers/create")}
-          className="p-ripple bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          onClick={() => navigate("/categories/create")}
+          className="p-ripple orange-ripple bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
         >
           Create New
           <Ripple />
@@ -101,7 +99,7 @@ export default function CustomersPage() {
           </div>
         ) : (
           <div className="w-full">
-            <TableTabulatorComponent data={customers} columns={columns} />
+            <TableTabulatorComponent data={categories} columns={columns} />
           </div>
         )}
       </div>

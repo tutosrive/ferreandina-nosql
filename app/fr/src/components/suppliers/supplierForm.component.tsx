@@ -1,71 +1,73 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import branchService from "../../services/branch.service";
+import supplierService from "../../services/supplier.service";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Ripple } from "primereact/ripple";
-import type Branch from "../../models/Branch.model";
 
-interface BranchFormProps {
-  initialData?: Branch | null;
+interface SupplierFormProps {
+  initialData?: any | null;
   isEdit?: boolean;
   isView?: boolean;
 }
 
-export default function BranchFormComponent({
+export default function SupplierFormComponent({
   initialData = null,
   isEdit = false,
   isView = false,
-}: BranchFormProps) {
+}: SupplierFormProps) {
   const navigate = useNavigate();
 
   const initialValues = {
-    id: initialData?.id || "",
+    id: initialData?.id || initialData?._id || "",
     name: initialData?.name || "",
-    city: initialData?.city || "",
-    direction: initialData?.direction || "",
-    is_main: initialData?.is_main || false,
+    phone: initialData?.phone || "",
+    email: initialData?.email || "",
+    image: initialData?.image || "",
   };
 
   const [formValues, setFormValues] = useState(initialValues);
 
   const validationSchema = Yup.object({
-    id: Yup.number().typeError("ID must be a number").required("Required ID"),
-    name: Yup.string().required("Required Name"),
-    city: Yup.string().required("Required City"),
-    direction: Yup.string().required("Required Direction"),
-    is_main: Yup.boolean(),
+    id: Yup.number()
+      .typeError("ID must be a number")
+      .integer("ID must be an integer")
+      .required("Required ID"),
+    name: Yup.string().min(3, "Minimum 3 chars").required("Required Name"),
+    phone: Yup.string()
+      .matches(/^[0-9]+$/, "Must be only numbers")
+      .required("Required Phone"),
+    email: Yup.string()
+      .email("Must be a valid email")
+      .required("Required Email"),
+    image: Yup.string().url("Must be a valid URL").nullable(),
   });
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: typeof initialValues) => {
     if (isView) return;
 
-    const payload: Branch = {
+    const payload = {
       id: Number(values.id),
       name: values.name,
-      city: values.city,
-      direction: values.direction,
-      is_main: Boolean(values.is_main),
+      phone: values.phone,
+      email: values.email,
+      image: values.image,
     };
 
     const response = isEdit
-      ? await branchService.update(payload.id as number, payload)
-      : await branchService.post(payload);
+      ? await supplierService.update(payload.id, payload)
+      : await supplierService.post(payload);
 
     if (response.status === 200 || response.status === 201) {
       Swal.fire({
         title: "Success",
-        text: `Branch successfully processed`,
+        text: `Supplier successfully ${isEdit ? "updated" : "created"}`,
         icon: "success",
       });
-      navigate("/branches");
+      navigate("/suppliers");
     } else {
-      Swal.fire({
-        title: "Error",
-        text: "Failed to process branch",
-        icon: "error",
-      });
+      Swal.fire("Error", "Failed to process supplier", "error");
     }
   };
 
@@ -80,24 +82,20 @@ export default function BranchFormComponent({
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-
-    let finalValue = value;
-    if (name === "id") {
-      finalValue = String(value).replace(/\D/g, "");
+    let { name, value } = e.target;
+    if (["id", "phone"].includes(name)) {
+      value = value.replace(/\D/g, "");
     }
-
-    setFormValues((prev) => ({ ...prev, [name]: finalValue }));
-    formik.setFieldValue(name, finalValue);
+    setFormValues((prev) => ({ ...prev, [name]: value }));
+    formik.setFieldValue(name, value);
   };
 
   const fields = [
     { name: "id", type: "text", label: "ID" },
     { name: "name", type: "text", label: "NAME" },
-    { name: "city", type: "text", label: "CITY" },
-    { name: "direction", type: "text", label: "DIRECTION" },
+    { name: "phone", type: "text", label: "PHONE" },
+    { name: "email", type: "email", label: "EMAIL" },
+    { name: "image", type: "text", label: "IMAGE URL" },
   ];
 
   return (
@@ -108,7 +106,7 @@ export default function BranchFormComponent({
 
           return (
             <div key={field.name}>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-500 mb-1">
                 {field.label}
               </label>
               <input
@@ -116,13 +114,15 @@ export default function BranchFormComponent({
                 name={field.name}
                 placeholder={field.label}
                 value={
-                  (formik.values[
-                    field.name as keyof typeof formik.values
-                  ] as string) || ""
+                  formik.values[field.name as keyof typeof formik.values] || ""
                 }
                 onChange={handleChange}
                 disabled={isDisabled}
-                className={`w-full border px-3 py-2 rounded text-gray-700 ${isDisabled ? "bg-gray-100 cursor-not-allowed font-semibold" : ""}`}
+                className={`w-full border px-3 py-2 rounded text-black placeholder-gray-300 ${
+                  isDisabled
+                    ? "bg-gray-200 cursor-not-allowed font-semibold"
+                    : "bg-white"
+                }`}
               />
               {!isDisabled &&
                 formik.touched[field.name as keyof typeof formik.touched] &&
@@ -139,24 +139,6 @@ export default function BranchFormComponent({
           );
         })}
 
-        <div className="flex items-center mt-4">
-          <input
-            type="checkbox"
-            name="is_main"
-            id="is_main"
-            checked={formik.values.is_main}
-            onChange={handleChange}
-            disabled={isView}
-            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-          />
-          <label
-            htmlFor="is_main"
-            className="ml-2 block text-sm font-medium text-gray-700"
-          >
-            IS MAIN BRANCH
-          </label>
-        </div>
-
         <div className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-2 sm:space-y-0 mt-6">
           <button
             type="button"
@@ -170,9 +152,9 @@ export default function BranchFormComponent({
           {!isView && (
             <button
               type="submit"
-              className="p-ripple orange-ripple bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full sm:w-auto"
+              className="p-ripple orange-ripple bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full sm:w-auto"
             >
-              {isEdit ? "Update" : "Create"}
+              {isEdit ? "Update Supplier" : "Create Supplier"}
               <Ripple />
             </button>
           )}

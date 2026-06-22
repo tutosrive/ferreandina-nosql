@@ -12,7 +12,7 @@ function App() {
           <Suspense
             fallback={
               <div className="w-screen h-screen fixed top-1/2 text-center">
-                Cargando diseño...
+                Loading Design...
               </div>
             }
           >
@@ -28,7 +28,7 @@ function App() {
               <Suspense
                 fallback={
                   <div className="w-screen h-screen fixed top-1/2 text-center">
-                    Cargando módulo...
+                    Loading Module...
                   </div>
                 }
               >

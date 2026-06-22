@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import customerService from "../../services/customer.service";
 import CustomerFormComponent from "../../components/customers/customerForm.component";
@@ -11,7 +11,7 @@ export default function ViewCustomerPage() {
   useEffect(() => {
     const fetchCustomer = async () => {
       if (id) {
-        const res = await customerService.get_customer_by_id(id);
+        const res = await customerService.get_by_id(id);
         setCustomer(res.data);
       }
     };
@@ -21,7 +21,7 @@ export default function ViewCustomerPage() {
   if (!customer) return <LoaderPointsComponent />;
 
   return (
-    <div>
+    <div className="pb-10">
       <h2 className="text-xl font-bold text-center mb-6">
         View Customer Details
       </h2>

@@ -1,31 +1,34 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import customerService from "../../services/customer.service";
+import workerService from "../../services/worker.service";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Ripple } from "primereact/ripple";
-import type Customer from "../../models/Customer.model";
 
-interface CustomerFormProps {
-  initialData?: Customer | null;
+interface WorkerFormProps {
+  initialData?: any | null;
   isEdit?: boolean;
   isView?: boolean;
 }
 
-export default function CustomerFormComponent({
+export default function WorkerFormComponent({
   initialData = null,
   isEdit = false,
   isView = false,
-}: CustomerFormProps) {
+}: WorkerFormProps) {
   const navigate = useNavigate();
 
   const initialValues = {
-    id: initialData?.id || (initialData as any)?._id || "",
-    alias: initialData?.alias || "",
-    ni: initialData?.ni || "",
-    category: initialData?.category || "",
+    id: initialData?.id || initialData?._id || "",
+    image: initialData?.image || "",
+    name: initialData?.name || "",
+    age: initialData?.age || "",
+    speciality: initialData?.speciality || "",
+    weight: initialData?.weight || "",
+    email: initialData?.email || "",
     phone: initialData?.phone || "",
+    salary: initialData?.salary || "",
   };
 
   const [formValues, setFormValues] = useState(initialValues);
@@ -35,38 +38,59 @@ export default function CustomerFormComponent({
       .typeError("ID must be a number")
       .integer("ID must be an integer")
       .required("Required ID"),
-    alias: Yup.string().min(3, "Minimum 3 chars").required("Required Alias"),
-    ni: Yup.string().required("Required NI"),
-    category: Yup.string().required("Required Category"),
+    image: Yup.string()
+      .url("Invalid URL format")
+      .required("Required Image URL"),
+    name: Yup.string().min(3, "Minimum 3 chars").required("Required Name"),
+    age: Yup.number()
+      .typeError("Age must be a number")
+      .integer("Age must be an integer")
+      .min(18, "Must be at least 18 years old")
+      .required("Required Age"),
+    speciality: Yup.string().required("Required Speciality"),
+    weight: Yup.number()
+      .typeError("Weight must be a number")
+      .required("Required Weight"),
+    email: Yup.string()
+      .email("Invalid email layout")
+      .required("Required Email"),
     phone: Yup.string()
       .matches(/^[0-9]+$/, "Must be only numbers")
       .required("Required Phone"),
+    salary: Yup.number()
+      .typeError("Salary must be a number")
+      .min(0)
+      .required("Required Salary"),
   });
 
   const handleSubmit = async (values: typeof initialValues) => {
     if (isView) return;
 
-    const payload: Customer = {
+    const payload = {
       id: Number(values.id),
-      alias: values.alias,
-      ni: values.ni,
-      category: values.category,
+      image: values.image,
+      name: values.name,
+      age: Number(values.age),
+      speciality: values.speciality,
+      weight: Number(values.weight),
+      email: values.email,
       phone: values.phone,
+      salary: Number(values.salary),
     };
 
     const response = isEdit
-      ? await customerService.update(payload.id as number, payload)
-      : await customerService.post(payload);
+      ? await workerService.update(payload.id, payload)
+      : await workerService.post(payload);
 
     if (response.status === 200 || response.status === 201) {
       Swal.fire({
         title: "Success",
-        text: `Customer successfully ${isEdit ? "updated" : "created"}`,
+        text: `Worker successfully ${isEdit ? "updated" : "created"}`,
         icon: "success",
       });
-      navigate("/customers");
+      navigate("/workers");
     } else {
-      Swal.fire("Error", "Failed to process customer", "error");
+      Swal.fire("Error", "Failed to process worker", "error");
     }
   };
 
@@ -82,7 +106,7 @@ export default function CustomerFormComponent({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
-    if (["id", "phone"].includes(name)) {
+    if (["id", "phone", "age", "weight", "salary"].includes(name)) {
       value = value.replace(/\D/g, "");
     }
     setFormValues((prev) => ({ ...prev, [name]: value }));
@@ -91,10 +115,14 @@ export default function CustomerFormComponent({
 
   const fields = [
     { name: "id", type: "text", label: "ID" },
-    { name: "alias", type: "text", label: "ALIAS" },
-    { name: "ni", type: "text", label: "NI (Document/Tax ID)" },
-    { name: "category", type: "text", label: "CATEGORY" },
+    { name: "image", type: "text", label: "IMAGE URL" },
+    { name: "name", type: "text", label: "FULL NAME" },
+    { name: "age", type: "text", label: "AGE" },
+    { name: "speciality", type: "text", label: "SPECIALITY" },
+    { name: "weight", type: "text", label: "WEIGHT" },
+    { name: "email", type: "email", label: "EMAIL" },
     { name: "phone", type: "text", label: "PHONE" },
+    { name: "salary", type: "text", label: "SALARY" },
   ];
 
   return (
@@ -142,7 +170,7 @@ export default function CustomerFormComponent({
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="p-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded w-full sm:w-auto"
+            className="p-ripple orange-ripple bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded w-full sm:w-auto"
           >
             Back
             <Ripple />
@@ -151,9 +179,9 @@ export default function CustomerFormComponent({
           {!isView && (
             <button
               type="submit"
-              className="p-ripple bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full sm:w-auto"
+              className="p-ripple orange-ripple bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full sm:w-auto"
             >
-              {isEdit ? "Update Customer" : "Create Customer"}
+              {isEdit ? "Update Worker" : "Create Worker"}
               <Ripple />
             </button>
           )}
