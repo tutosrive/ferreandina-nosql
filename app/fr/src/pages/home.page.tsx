@@ -52,7 +52,8 @@ export default function HomePage() {
             <div className="summary-card__preview">
               <img
                 className="summary-card__image"
-                src={imageMap[item.id]}
+                src="https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories.webp"
+                // src={imageMap[item.id]}
                 alt={item.label}
               />
             </div>

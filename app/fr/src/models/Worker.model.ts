@@ -1,5 +1,5 @@
 export default interface Worker {
-  _id?: number;
+  id?: number;
   name?: string;
   age?: number;
   speciality?: string;
@@ -7,4 +7,5 @@ export default interface Worker {
   email?: string;
   phone?: string;
   salary?: number;
+  image?: string;
 }
