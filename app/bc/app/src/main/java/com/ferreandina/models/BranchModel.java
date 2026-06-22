@@ -8,6 +8,8 @@ public class BranchModel extends Model {
     @Nullable
     private String name;
     @Nullable
+    private String image;
+    @Nullable
     private String city;
     @Nullable
     private String direction;
@@ -19,14 +21,15 @@ public class BranchModel extends Model {
     private Boolean is_main;
 
     public BranchModel() {
-        this(null, null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null);
     }
 
     public BranchModel(
-            Integer id, String name, String city, String direction,
+            Integer id, String name, String image, String city, String direction,
             Boolean isMain, List<ProductModel> products, List<WorkerModel> workers) {
         this.setId(id);
         this.setName(name);
+        this.setImage(image);
         this.setCity(city);
         this.setDirection(direction);
         this.setIs_main(isMain);
@@ -46,6 +49,10 @@ public class BranchModel extends Model {
         return this.city;
     }
 
+    public String getImage() {
+        return this.image;
+    }
+
     public String getDirection() {
         return this.direction;
     }
@@ -60,6 +67,10 @@ public class BranchModel extends Model {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setDirection(String direction) {

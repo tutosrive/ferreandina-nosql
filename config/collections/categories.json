@@ -1,96 +1,115 @@
 [
   {
     "_id": 1,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/adhesives-and-sealants.webp",
     "name": "construction-materials",
     "description": "Basic materials for construction and renovation projects such as cement, sand, bricks, blocks, mixes, plaster, mortars and complementary supplies"
   },
   {
     "_id": 2,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/pvc.webp",
     "name": "pvc",
     "description": "PVC products such as pipes, fittings, elbows, joints, valves and accessories for water, drainage and other systems"
   },
   {
     "_id": 3,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/locks-and-padlocks.webp",
     "name": "locks-and-padlocks",
     "description": "Security products for doors, furniture and access points, including locks, latches, padlocks and protective accessories"
   },
   {
     "_id": 4,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/drywall.webp",
     "name": "drywall",
     "description": "Drywall construction materials such as gypsum boards, metal profiles, corners, tapes, joint compounds and accessories for walls and ceilings"
   },
   {
     "_id": 5,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/electrical.webp",
     "name": "electrical",
     "description": "Electrical installation products such as cables, plugs, switches, outlets, breakers, conduits, light bulbs and electrical accessories"
   },
   {
     "_id": 6,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/galvanized.webp",
     "name": "galvanized",
     "description": "Metal products with a zinc coating for corrosion protection, used in structures, pipes, fasteners and construction work"
   },
   {
     "_id": 7,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/bathroom-fixtures.webp",
     "name": "bathroom-fixtures",
     "description": "Water supply and control accessories for sinks and bathrooms, including faucets, valves, keys and replacement parts"
   },
   {
     "_id": 8,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/kitchen-and-laundry-fixtures.webp",
     "name": "kitchen-and-laundry-fixtures",
     "description": "Faucets and accessories for kitchens and laundry areas, including taps, mixers, pipes and sink accessories"
   },
   {
     "_id": 9,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/kitchen-and-laundry-fixtures.webp",
     "name": "plumbing",
     "description": "Plumbing products such as valves, drains, connections and bathroom installation components"
   },
   {
     "_id": 10,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/power-tools.webp",
     "name": "power-tools",
     "description": "Electric-powered equipment and machines for construction, repair and maintenance work, such as drills, grinders, sanders, saws and accessories"
   },
   {
     "_id": 11,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/hand-tools.webp",
     "name": "hand-tools",
     "description": "Tools for mechanical, assembly and repair tasks without electricity, such as hammers, screwdrivers, wrenches, pliers and other manual tools"
   },
   {
     "_id": 12,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/safety-equipment.webp",
     "name": "safety-equipment",
     "description": "Protective equipment for construction, industrial and maintenance work, such as gloves, safety glasses, helmets, masks, hearing protection and safety gear"
   },
   {
     "_id": 13,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/steel.webp",
     "name": "steel",
     "description": "Metal materials for structures and manufacturing such as bars, rods, profiles, sheets and steel components"
   },
   {
     "_id": 14,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/home.webp",
     "name": "home",
     "description": "Products for household maintenance and daily use, including cleaning supplies, organization items, accessories and home solutions"
   },
   {
     "_id": 15,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/adhesives-and-sealants.webp",
     "name": "adhesives-and-sealants",
     "description": "Adhesives and sealants for joining and sealing materials such as silicones, epoxies, contact cement and specialized bonding products"
   },
   {
     "_id": 16,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/paints.webp",
     "name": "paints",
     "description": "Products for surface finishing and protection such as interior and exterior paints, enamels, anti-corrosion coatings, varnishes and accessories"
   },
   {
     "_id": 17,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/nails.webp",
     "name": "nails",
     "description": "Metal fastening elements for woodworking, construction and carpentry in different sizes and formats"
   },
   {
     "_id": 18,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/fasteners.webp",
     "name": "fasteners",
     "description": "Screws, nuts, washers, bolts and other fastening accessories for assembly and securing parts"
   },
   {
     "_id": 19,
+    "image": "https://cdn.jsdelivr.net/gh/tutosrive/images-projects-srm-trg@main/others/ferreandina-nosql/categories/pipes-and-curtain-accesories.webp",
     "name": "pipes-and-curtain-accessories",
     "description": "Products for installing and maintaining piping systems, together with curtain accessories such as tubes, fittings, supports, rods, rails, terminals and mounting components"
   }
