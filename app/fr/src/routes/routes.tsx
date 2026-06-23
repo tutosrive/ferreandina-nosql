@@ -1,6 +1,7 @@
 import { lazy } from "react";
 
 const HomePage = lazy(() => import("../pages/home.page"));
+const AdvancedQueriesPage = lazy(() => import("../pages/advancedQueries.page"));
 
 const CustomersPage = lazy(() => import("../pages/customers/customer.page"));
 const CreateCustomerPage = lazy(
@@ -72,6 +73,11 @@ const routers = [
     path: "/customers/create",
     element: <CreateCustomerPage />,
     title: "Create Customer",
+  },
+  {
+    path: "/advanced-queries",
+    element: <AdvancedQueriesPage />,
+    title: "Advanced Queries",
   },
   {
     path: "/customers/update/:id",
